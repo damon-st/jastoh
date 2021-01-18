@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "catalogo-juegos-dd8ec": {
+      "hosting": {
+        "jastho": [
+          "catalogo-juegos-dd8ec"
+        ]
+      }
+    }
+  }
+}
