@@ -85,9 +85,9 @@
 }
 
 
-
-
-
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #343a40;
+}
 
 @media only screen and (max-width: 700px) {
   .responsive {

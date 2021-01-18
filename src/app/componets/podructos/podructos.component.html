@@ -4,7 +4,7 @@
 
 
     <div class="">
-        <div class="row mt-5">
+        <div class="row mt-5 nav nav-tabs">
           <div class="col-sm">
             <button class="btn btn-dark btn-hover" (click)="getProduct('Mujer')">Para Mujer</button>
           </div>
@@ -42,8 +42,8 @@
               </ul>
           </div>
           <div class="col-md-9" *ngIf="productos.length>0">
-            <div class="mt-5"  *ngFor="let prod of productos">
-                <div class="card responsive ml-5 mt-5" >
+            <div class="mt-5"  *ngFor="let prod of productos | paginate:{itemsPerPage: 12, currentPage: pageActual, totalItems: totalItems }">
+                <div class="card responsive " >
                     <img [src]="prod.imgPortada" class="card-img-top rounded" width="100%" height="250" alt="{{prod.title}}">
                     <div class="card-body">
                       <h5 class="card-title text-center">{{prod.title}}</h5>
@@ -56,10 +56,24 @@
                 </div>
             </div>
           </div>
+          <div class="col-lg mt-5" *ngIf="loading">
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border" style="width: 10rem; height: 10rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+          </div>
+          </div>
           <div class="col-lg mt-5" *ngIf="productos.length<1">
             <div class="alert alert-warning" role="alert">
                 No ay productos que monstrar :(
-              </div>
+            </div>
           </div>
       </div>
+      <pagination-controls class="my-pagination" (pageChange)="pageActual = $event"
+      
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+      
+      ></pagination-controls>
+
 </div>

@@ -29,4 +29,9 @@ export class ProductosService {
     return this.db.list(ref);
   }
 
+  getProductsLimint(limit: any,cat: any){
+    const ref = this.db.database.ref('Ropa').child(cat).limitToLast(limit);
+    return this.db.list('Ropa',query=>query.child(cat).limitToLast(limit));
+  }
+
 }

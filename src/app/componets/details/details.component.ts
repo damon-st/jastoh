@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import {map} from 'rxjs/operators';
 import { ImageUrlsI } from 'src/app/models/imageurl';
 import { ProductsI } from 'src/app/models/product-model';
 import { ProductosService } from 'src/app/services/productos.service';
+import  {pairwise}from 'rxjs/operators';
 
 @Component({
   selector: 'app-details',
@@ -15,18 +16,48 @@ export class DetailsComponent implements OnInit {
 
   produto: ProductsI[] = [];
 
+  productos: ProductsI[] = [];
+
   urls: ImageUrlsI[] = [];
 
   imagem: string = '';
 
   constructor(private route:ActivatedRoute,
+    private router:Router,
     private producSvc: ProductosService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     const cate = this.route.snapshot.paramMap.get('cate');
     
-   
+    this.getProduct(cate,id);
+    
+
+    this.router.events.subscribe((events)=>{
+
+      if(events instanceof NavigationStart){
+      }
+
+      if(events instanceof NavigationEnd){
+        window.scrollTo({top: 0,behavior: 'smooth'});
+        const id = this.route.snapshot.paramMap.get('id');
+        const cate = this.route.snapshot.paramMap.get('cate');
+      
+        this.getProduct(cate,id);
+      }
+    });
+
+  }
+
+   mostrar(img: any){
+     this.imagem = img;
+   }
+
+
+   getProduct(cate: any, id: any){
+    this.produto = [];
+    this.urls= [];
+    this.productos = [];
     this.producSvc.productDetail(cate,id).valueChanges().subscribe(res=>{
 
       res.forEach(index =>{
@@ -34,9 +65,6 @@ export class DetailsComponent implements OnInit {
       })
 
       this.producSvc.getImages(cate,id).snapshotChanges().subscribe(res =>{
-       
-
-        
         for(let x = 0; x < res.length ; x++){
           let url =  res[x].payload.toJSON();
           this.urls.push(url as any);
@@ -44,20 +72,36 @@ export class DetailsComponent implements OnInit {
           
         }
       });
-
-      console.log(this.urls);
       
-          
-
     });
+    this.producSvc.getProductsLimint(3,cate).valueChanges().subscribe(res =>{
+        res.forEach(prod =>{
+          this.productos.push(prod as ProductsI);
+        });
+    },error=>{
+      console.log(error);
+    });
+   }
 
+
+   contactos(url: string){
+    switch(url){
+      case 'whatsapp':
+        window.open('https://api.whatsapp.com/send?phone=593984334637&text=Me,%20Interesa%20sus%20productos%20','_blanck');
+        break;
+      case 'instagram':
+        window.open('https://www.instagram.com/variedadesjastoh/?igshid=v5r52ujztizn','_blanck');
+        break;  
+
+      case 'telegram':
+        window.open('https://t.me/JasminCevallos','_black');
+        break;  
+    }
   }
 
-   mostrar(img: any){
-     this.imagem = img;
-     console.log(img);
-     let i = document.getElementById('myModal');
-     
-   }
+
+  relacionadosProductos(cate: any, id:any){
+    this.router.navigate(['/detalles',cate,id]);
+  }
 
 }
