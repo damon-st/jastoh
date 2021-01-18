@@ -15,7 +15,7 @@ export class DetailsComponent implements OnInit {
 
   produto: ProductsI[] = [];
 
-  urls: ImageUrlsI[] = [{$key: ''}];
+  urls: ImageUrlsI[] = [];
 
   constructor(private route:ActivatedRoute,
     private producSvc: ProductosService) { }
@@ -34,11 +34,17 @@ export class DetailsComponent implements OnInit {
       this.producSvc.getImages(cate,id).snapshotChanges().subscribe(res =>{
        
 
+        
         for(let x = 0; x < res.length ; x++){
-          const url =  res[x].payload.toJSON();
-          this.urls[x].$key = url;
+          let url =  res[x].payload.toJSON();
+          this.urls.push(url as any);
+         // console.log(url);
+          
         }
-      })
+      });
+
+      console.log(this.urls);
+      
           
 
     });

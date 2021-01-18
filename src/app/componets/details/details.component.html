@@ -1,27 +1,30 @@
 
 
 <div class="container mt-5">
-    <h1 class="text-center">Detalles del Producto</h1>
+    <h1 class="text-center mb-5">Detalles del Producto</h1>
 
-    <div class="card mb-3" *ngFor="let prod of produto">
+    <div class="card card-border mb-3" *ngFor="let prod of produto">
         <div class="row g-0">
           <div class="col-md-4">
             <img [src]="prod.imgPortada" class="rounded mt-4 ml-4" width="250" alt="{{prod.title}}">
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{{prod.title}}</h5>
+              <h3 class="card-title">{{prod.title}}</h3>
               <p class="card-text">{{prod.description}}</p>
-              <p class="card-text"><small class="text-muted">Precio: ${{prod.price}}</small></p>
+              <p class="card-text">Precio: ${{prod.price}}</p>
               <p class="card-text">Categoria: {{prod.category}}</p>
               <p class="card-text">Marca: {{prod.marca}}</p>
               <p class="card-text">Cantidad Disponible: {{prod.cantidad}}</p>
+              <div class="linea"></div>
             </div>
           </div>
         </div>
         <div class="row">
             <div class="col-sm">
-                <p class="text-center">Mas imagenes del Productos</p>
+                <h5 class="text-center">
+                    Mas imagenes del Productos
+                </h5>
                 <div class="row row-cols-1 row-cols-md-3 g-4" *ngFor="let url of urls">
                     <div class="col" >
                       <div class="card h-100">
