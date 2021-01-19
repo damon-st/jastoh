@@ -8,6 +8,8 @@ import { IndexComponent } from './componets/index/index.component';
 import { ContactsComponent } from './componets/contacts/contacts.component';
 import { PodructosComponent } from './componets/podructos/podructos.component';
 
+//froms
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
@@ -39,7 +41,9 @@ import { DetailsComponent } from './componets/details/details.component';
     AngularFireStorageModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{provide:BUCKET,useValue:'gs://catalogo-juegos-dd8ec.appspot.com'},ProductosService],
   bootstrap: [AppComponent]
