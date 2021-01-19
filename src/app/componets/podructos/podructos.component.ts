@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ProductosService } from 'src/app/services/productos.service';
 import {ProductsI} from '../../models/product-model';
@@ -28,7 +29,10 @@ export class PodructosComponent implements OnInit {
   loading: boolean = true;
   
   constructor(private prodSVC: ProductosService,
-    private route: Router) { }
+    private route: Router,
+    private title: Title) {
+      this.title.setTitle('Productos')
+     }
 
   ngOnInit(): void {
    this.getProduct('Mujer');

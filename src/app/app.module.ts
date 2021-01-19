@@ -23,6 +23,7 @@ import {AngularFireModule} from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { ProductosService } from './services/productos.service';
 import { DetailsComponent } from './componets/details/details.component';
+import { ErrorpageComponent } from './componets/errorpage/errorpage.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DetailsComponent } from './componets/details/details.component';
     IndexComponent,
     ContactsComponent,
     PodructosComponent,
-    DetailsComponent
+    DetailsComponent,
+    ErrorpageComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,7 @@ import { DetailsComponent } from './componets/details/details.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [{provide:BUCKET,useValue:'gs://catalogo-juegos-dd8ec.appspot.com'},ProductosService],
+  providers: [{provide:BUCKET,useValue:'gs://variedadesjastho.appspot.com'},ProductosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

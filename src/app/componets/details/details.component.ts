@@ -5,6 +5,7 @@ import { ImageUrlsI } from 'src/app/models/imageurl';
 import { ProductsI } from 'src/app/models/product-model';
 import { ProductosService } from 'src/app/services/productos.service';
 import  {pairwise}from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-details',
@@ -24,9 +25,13 @@ export class DetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private producSvc: ProductosService) { }
+              private producSvc: ProductosService,
+              private title: Title) {
+               }
 
   ngOnInit(): void {
+    this.title.setTitle('Detalles del Producto');
+
     const id = this.route.snapshot.paramMap.get('id');
     const cate = this.route.snapshot.paramMap.get('cate');
     

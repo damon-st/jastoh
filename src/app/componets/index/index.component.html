@@ -26,3 +26,22 @@
     </div>
   </div>
 </div>
+
+
+<div class="accordion accordion-flush mt-5 border" id="accordionFlushExample" *ngIf="!getAceptacion()">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+       Uso de cookies
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+        Empleamos las cookies para facilitar la utilización de nuestra pagina y adaptar mejor las Páginas y nuestros productos a sus intereses y necesidades.
+        <strong>Recalcando</strong> no se reocupilara sus datos. <strong>Estamos Comprometidos con su seguridad.</strong>
+        <br>
+        <button class="btn btn-lg btn-success" (click)="aceptarCookies()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
