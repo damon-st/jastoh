@@ -12,7 +12,7 @@ export class ProductosService {
   constructor(private db: AngularFireDatabase) { }
 
 
-  productos(categoria: string){
+  productos(categoria: any){
   // const ref =  this.db.database.ref('Ropa').child(categoria).orderByChild('title').startAt('yy').endAt('yy'+'\uf8ff');
  // const ref =  this.db.database.ref('Ropa').child(categoria);
   return this.db.list('Ropa', query => query.orderByChild('category').startAt(categoria).endAt(categoria+'\uf8ff')).valueChanges();
@@ -37,6 +37,11 @@ export class ProductosService {
 
   searchProduc(title: string){
     return this.db.list('Ropa', query => query.orderByChild('title').startAt(title).endAt(title + '\uf8ff'));
+  }
+
+
+  getCategorys(){
+    return this.db.list('Categorias').valueChanges();
   }
 
 }

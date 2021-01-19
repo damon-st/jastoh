@@ -11,15 +11,15 @@
           <div class="col-sm">
             <button class="btn btn-dark btn-hover"  (click)="getProduct('Hombre')">Para Hombre</button>
           </div>
-          <div class="col-sm">
-            <button class="btn btn-dark btn-hover" (click)="getProduct('Niño')">Para Niño</button>
-          </div>
-          <div class="col-sm">
-            <button class="btn btn-dark btn-hover" (click)="getProduct('Niña')">Para Niña</button>
-          </div>
+    
           <div class="col-sm">
             <button class="btn btn-dark btn-hover" (click)="getProduct('NiñoyNiña')">Para Niño y Niña</button>
           </div>
+         
+          <div class="col-sm">
+            <button class="btn btn-dark btn-hover" (click)="getProduct('Hogar')">Para el Hogar</button>
+          </div>
+          
           <div class="col-sm">
             <button class="btn btn-dark btn-hover" (click)="getProduct('Variedades')">Variedades</button>
           </div>
@@ -41,17 +41,11 @@
    
       <div class="row no-span">
           <div class="col-md-3">
-            <ul class="list-group mt-5">
+            <ul class="list-group mt-5" >
                 <li class="list-group-item bg-dark text-white" aria-current="true">Buscar por:</li>
-                <li class="list-group-item cursor-pointer hover-black" (click)="getProduct('Pantalones')">Pantalones</li>
-                <li class="list-group-item cursor-pointer hover-black" (click)="getProduct('Blusas')">Blusas</li>
-                <li class="list-group-item cursor-pointer hover-black" (click)="getProduct('Carteras')">Carteras</li>
-                <li class="list-group-item cursor-pointer hover-black"(click)="getProduct('Juguetes')">Juguetes</li>
-                <li class="list-group-item cursor-pointer hover-black" (click)="getProduct('Maquillaje')">Maquillaje</li>
-                <li class="list-group-item cursor-pointer hover-black" (click)="getProduct('Mochilas')">Mochilas</li>
-                <li class="list-group-item cursor-pointer hover-black" (click)="getProduct('Zapatos')">Zapatos</li>
-                <li class="list-group-item cursor-pointer hover-black" (click)="getProduct('Hogar')">Para el Hogar</li>
-              
+                <div *ngFor="let cate of categorys">
+                 <li class="list-group-item cursor-pointer hover-black" (click)="getProduct(cate.id)">{{cate.id}}</li>
+                </div>            
               </ul>
           </div>
           <div class="col-md-9" *ngIf="productos.length>0">

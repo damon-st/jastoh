@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { CategoryI } from 'src/app/models/categorias';
 import { ProductosService } from 'src/app/services/productos.service';
 import {ProductsI} from '../../models/product-model';
 
@@ -19,6 +20,7 @@ export class PodructosComponent implements OnInit {
  
 
   productos: ProductsI[] = [];
+  categorys: CategoryI[] = [];
 
   search = new FormGroup({buscar: new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(30)
   ])});
@@ -36,10 +38,11 @@ export class PodructosComponent implements OnInit {
 
   ngOnInit(): void {
    this.getProduct('Mujer');
+   this.getCategorys();
   }
 
 
-  getProduct(ref: string): void{
+  getProduct(ref: any): void{
     this.productos = [];
     this.prodSVC.productos(ref).subscribe(res=>{
       res.forEach(val =>{
@@ -55,6 +58,13 @@ export class PodructosComponent implements OnInit {
     );
   }
 
+  getCategorys():void{
+    this.prodSVC.getCategorys().subscribe(res =>{
+      res.forEach(cate =>{
+        this.categorys.push(cate as CategoryI);  
+      });
+    },error=>{console.log(error);});
+  }
 
   productDetail(id: any, cate: any): void{
     this.route.navigate(['/detalles', cate, id]);
