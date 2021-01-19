@@ -15,7 +15,7 @@ export class ProductosService {
   productos(categoria: string){
   // const ref =  this.db.database.ref('Ropa').child(categoria).orderByChild('title').startAt('yy').endAt('yy'+'\uf8ff');
  // const ref =  this.db.database.ref('Ropa').child(categoria);
-  return this.db.list("Ropa",query=>query.orderByChild('category').startAt(categoria).endAt(categoria+"\uf8ff")).valueChanges();
+  return this.db.list('Ropa', query => query.orderByChild('category').startAt(categoria).endAt(categoria+'\uf8ff')).valueChanges();
   }
 
   productDetail(cate:any ,id: any){
@@ -32,7 +32,11 @@ export class ProductosService {
 
   getProductsLimint(limit: any,cat: any){
  //   const ref = this.db.database.ref('Ropa').child(cat).limitToLast(limit);
-    return this.db.list('Ropa',query=>query.orderByChild('category').startAt(cat).endAt(cat+"\uf8ff").limitToLast(limit));
+    return this.db.list('Ropa',query=>query.orderByChild('category').startAt(cat).endAt(cat+'\uf8ff').limitToLast(limit));
+  }
+
+  searchProduc(title: string){
+    return this.db.list('Ropa', query => query.orderByChild('title').startAt(title).endAt(title + '\uf8ff'));
   }
 
 }

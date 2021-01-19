@@ -22,9 +22,9 @@ export class DetailsComponent implements OnInit {
 
   imagem: string = '';
 
-  constructor(private route:ActivatedRoute,
-    private router:Router,
-    private producSvc: ProductosService) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private producSvc: ProductosService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

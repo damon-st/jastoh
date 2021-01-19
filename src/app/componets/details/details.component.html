@@ -1,7 +1,15 @@
 <div class="container mt-5">
   <h1 class="text-center mb-5">Detalles del Producto</h1>
 
-  <div class="card card-border mb-3" *ngFor="let prod of produto">
+
+  <div class="text-center" *ngIf="produto.length<1">
+    <div class="spinner-grow" style="width: 10rem; height: 10rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="produto.length>0">
+      <div class="card card-border mb-3" *ngFor="let prod of produto">
     <div class="row g-0">
       <div class="col-md-4">
         <img
@@ -43,6 +51,8 @@
       </div>
     </div>
   </div>
+  </div>
+
 
 
 <!-- Modal -->

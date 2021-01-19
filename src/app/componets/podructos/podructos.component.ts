@@ -4,6 +4,11 @@ import { Router } from '@angular/router';
 import { ProductosService } from 'src/app/services/productos.service';
 import {ProductsI} from '../../models/product-model';
 
+
+export interface Serach{
+  buscar: string;
+}
+
 @Component({
   selector: 'app-podructos',
   templateUrl: './podructos.component.html',
@@ -14,8 +19,8 @@ export class PodructosComponent implements OnInit {
 
   productos: ProductsI[] = [];
 
-
-  search = new FormGroup({buscar: new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(30)])});
+  search = new FormGroup({buscar: new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(30)
+  ])});
 
   pageActual: number = 1;
   totalItems: number =0;
@@ -30,7 +35,7 @@ export class PodructosComponent implements OnInit {
   }
 
 
-  getProduct(ref: string){
+  getProduct(ref: string): void{
     this.productos = [];
     this.prodSVC.productos(ref).subscribe(res=>{
       res.forEach(val =>{
@@ -47,12 +52,21 @@ export class PodructosComponent implements OnInit {
   }
 
 
-  productDetail(id: any,cate:any){
-    this.route.navigate(['/detalles',cate,id]);
+  productDetail(id: any, cate: any): void{
+    this.route.navigate(['/detalles', cate, id]);
   }
 
-  buscar(form: any){
-  console.log(form);
-  
+  buscar(form: Serach): void{
+   this.productos = [];
+   this.prodSVC.searchProduc(form.buscar.toLocaleLowerCase()).valueChanges().subscribe(res => {
+    res.forEach(val =>{
+      this.productos.push(val as ProductsI);
+    });
+    this.totalItems = this.productos.length;
+    this.loading = false;
+   }, error => {
+    console.log(error);
+    
+   });
   }
 }

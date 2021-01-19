@@ -1,0 +1,41 @@
+.animacion-icon-whatsapp{
+    position: relative;
+    animation-name: movimiento-whatsapp;
+    animation-duration: 2s;
+}
+
+@keyframes movimiento-whatsapp{
+    0%   { left:0px; top:0px;}
+    25%  { left:200px; top:0px;}
+    50%  { left:200px; top:200px;}
+    75%  { left:0px; top:200px;}
+    100% { left:0px; top:0px;}
+}
+
+.animacion-icon-instagram{
+    position: relative;
+    animation-name: movimiento-instagram;
+    animation-duration: 2s;
+}
+
+@keyframes movimiento-instagram{
+    0%   { right:0px; top:0px;}
+    25%  { right:100px; top:0px;}
+    50%  { right:100px; top:200px;}
+    75%  { right:0px; top:200px;}
+    100% { right:0px; top:0px;}
+}
+
+.animacion-icon-telegram{
+    position: relative;
+    animation-name: movimiento-telegram;
+    animation-duration: 2s;
+}
+
+@keyframes movimiento-telegram{
+    0%   { right:0px; top:0px;}
+    25%  { right:300px; top:0px;}
+    50%  { right:300px; top:200px;}
+    75%  { right:0px; top:200px;}
+    100% { right:0px; top:0px;}
+}

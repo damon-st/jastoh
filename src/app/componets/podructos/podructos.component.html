@@ -28,9 +28,13 @@
       </div>
 
       <div class="container mt-5">
-        <form class="d-flex" [formGroup]="search" (ngSubmit)="buscar(search.value)">
-          <input class="form-control me-2" formControlName="buscar" type="search" placeholder="Escribe el producto que estas buscado" aria-label="Search">
+        <form  [formGroup]="search" (ngSubmit)="buscar(search.value)">
+          <div class="d-flex"
+          >
+          <input id="buscar" name="buscar" class="form-control me-2" formControlName="buscar" type="search" placeholder="Escribe el producto que estas buscado" aria-label="Buscar" pattern="[a-zA-Z0-9 ]*">
           <button class="btn btn-outline-success" [disabled]="search.invalid" type="submit">Buscar</button>
+        </div>
+      
         </form>
       </div>
 
@@ -45,6 +49,7 @@
                 <li class="list-group-item cursor-pointer hover-black"(click)="getProduct('Juguetes')">Juguetes</li>
                 <li class="list-group-item cursor-pointer hover-black" (click)="getProduct('Maquillaje')">Maquillaje</li>
                 <li class="list-group-item cursor-pointer hover-black" (click)="getProduct('Mochilas')">Mochilas</li>
+                <li class="list-group-item cursor-pointer hover-black" (click)="getProduct('Zapatos')">Zapatos</li>
               
               </ul>
           </div>
