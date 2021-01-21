@@ -24,6 +24,9 @@ import { environment } from 'src/environments/environment';
 import { ProductosService } from './services/productos.service';
 import { DetailsComponent } from './componets/details/details.component';
 import { ErrorpageComponent } from './componets/errorpage/errorpage.component';
+import { LoginComponent } from './componets/login/login.component';
+import { AuthService } from './services/auth.service';
+import { CrearproductoComponent } from './componets/crearproducto/crearproducto.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { ErrorpageComponent } from './componets/errorpage/errorpage.component';
     ContactsComponent,
     PodructosComponent,
     DetailsComponent,
-    ErrorpageComponent
+    ErrorpageComponent,
+    LoginComponent,
+    CrearproductoComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,7 @@ import { ErrorpageComponent } from './componets/errorpage/errorpage.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [{provide:BUCKET,useValue:'gs://variedadesjastho.appspot.com'},ProductosService],
+  providers: [{provide:BUCKET,useValue:'gs://variedadesjastho.appspot.com'},ProductosService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

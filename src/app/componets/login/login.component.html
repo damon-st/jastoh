@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <form [formGroup]="correo" (ngSubmit)="login(correo.value)">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
+          <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+          <div *ngIf="errores === 'auth/user-not-found'" id="emailHelp" class="alert alert-danger" role="alert">El correo Ingresado no existe en nuestra base de datos</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+          <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+          <div *ngIf="errores === 'auth/wrong-password'" id="emailHelp" class="alert alert-danger" role="alert">La contraseña no es correcta intenta nuevamente</div>
+          <div *ngIf="errores === 'auth/too-many-requests'" id="emailHelp" class="alert alert-danger" role="alert">Tomaste demasiados intentos intentalo nuvamente mas tarde</div>
+        </div>
+        <div class="row">
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btn btn-dark" [disabled]="correo.invalid" *ngIf="errores !== 'auth/too-many-requests'" >Iniciar Session</button>
+          </div>
+        </div>
+      </form>
+</div>
