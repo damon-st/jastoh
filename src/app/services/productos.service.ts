@@ -1,6 +1,7 @@
 import { query } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { ProductsI } from '../models/product-model';
 
@@ -9,8 +10,10 @@ import { ProductsI } from '../models/product-model';
 })
 export class ProductosService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase,
+   private storate: AngularFireStorage) { }
 
+   
 
   productos(categoria: any){
   // const ref =  this.db.database.ref('Ropa').child(categoria).orderByChild('title').startAt('yy').endAt('yy'+'\uf8ff');
@@ -44,4 +47,17 @@ export class ProductosService {
     return this.db.list('Categorias').valueChanges();
   }
 
+
+  deleteImg(url: any){
+   return this.storate.refFromURL(url).delete();
+  }
+
+  async createProduct(product: ProductsI){
+    const key = await  this.db.list('Ropa').push(product);
+
+   const up = await this.db.list('Ropa').update(key,{
+      id: key.key
+    });
+    return up;
+  }
 }

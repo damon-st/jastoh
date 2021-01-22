@@ -10,6 +10,6 @@ export interface ProductsI{
     marca?:string;
     price?:number;
     title?:string;
-    url?:String[];
+    url?:string[];
 
 }

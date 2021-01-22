@@ -28,9 +28,7 @@ export class NavbarComponent implements OnInit {
   }
 
   singout():void{
-    this.auth.logout();
-    this.isAuth = false;
-    this.router.navigate(['/inicio']);
+    this.router.navigate(['/crear']);
   }
 
 }
