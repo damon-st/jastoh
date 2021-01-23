@@ -49,16 +49,20 @@ export class CrearproductoComponent implements OnInit {
   }
 
   crear(){
-    this.producto.url?.push(...this.imgRef);
-    this.producto.imgPortada = this.imgRef[0];
-    
-    this.productSVC.createProduct(this.producto).then(res => {
-     this.router.navigate(['/productos']);
+    if(this.imgRef.length > 0){
+      this.producto.url?.push(...this.imgRef);
+      this.producto.imgPortada = this.imgRef[0];
       
-    }).catch(error => {
-      console.log(error);
-      this.errores = error;
-    });
+      this.productSVC.createProduct(this.producto).then(res => {
+      this.router.navigate(['/productos']);
+        
+      }).catch(error => {
+        console.log(error);
+        this.errores = error;
+      });
+   }else{
+     this.errores = 'Porfavor sube una imagen como minimo para el producto :(';
+   }
     
   }
 

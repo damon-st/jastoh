@@ -27,8 +27,6 @@ export class NavbarComponent implements OnInit {
     
   }
 
-  singout():void{
-    this.router.navigate(['/crear']);
-  }
+
 
 }
