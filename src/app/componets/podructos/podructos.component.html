@@ -50,8 +50,8 @@
           </div>
           <div class="col-md-9" *ngIf="productos.length>0">
             <div class="mt-5"  *ngFor="let prod of productos | paginate:{itemsPerPage: 12, currentPage: pageActual, totalItems: totalItems }">
-                <div class="card responsive " >
-                    <img [src]="prod.imgPortada" class="card-img-top rounded" width="100%" height="250" alt="{{prod.title}}">
+                <div class="card responsive img-shadow" >
+                    <img [src]="prod.imgPortada" class="card-img-top rounded" width="100%" height="auto" alt="{{prod.title}}">
                     <div class="card-body">
                       <h5 class="card-title text-center">{{prod.title | uppercase}}</h5>
                       <p class="card-text">{{prod.description}}</p>

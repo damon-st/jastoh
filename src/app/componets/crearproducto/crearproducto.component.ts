@@ -21,6 +21,7 @@ export class CrearproductoComponent implements OnInit {
   imgRef: string[] = [];
   
   errores: any;
+  url: any;
 
   producto: ProductsI = {cantidad:0,
                         category: '',
@@ -110,4 +111,9 @@ export class CrearproductoComponent implements OnInit {
     }); 
   }
 
+
+  showImage(url: any){
+    this.url = url;
+  }
+  
 }
