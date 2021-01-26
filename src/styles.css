@@ -85,6 +85,113 @@
 }
 
 
+.listado{
+  transition: all .7s;
+}
+
+.listado:hover{
+  cursor: pointer;
+  color: rgb(228, 188, 115);
+  text-decoration: underline;
+}
+
+
+.img-anim-small{
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.img-anim-small:hover{
+  transform: scale(0.9);
+}
+
+
+.mt-10{
+  margin-top: 6rem;
+}
+
+
+/* desde aqui empieza la copia de lña animacion */
+
+.w3l-grids-hny-2 .boxhny13 {
+  position: relative;
+  transition: all .2s ease-out 0s;
+}
+
+.w3l-grids-hny-2 .boxhny13 .boxhny-content,
+.w3l-grids-hny-2 .boxhny13:after {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+}
+
+.w3l-grids-hny-2 .boxhny13:after {
+  content: "";
+  display: block;
+  background: rgba(31, 28, 28, 0.74902);
+  top: 20px;
+  bottom: 20px;
+  opacity: 0;
+  transform: rotate3d(-1, 1, 0, 100deg);
+  transition: all .4s ease-in-out 0s;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.w3l-grids-hny-2 .boxhny13:hover:after {
+  opacity: .9;
+  transform: rotate3d(0, 0, 0, 0deg);
+}
+
+.w3l-grids-hny-2 .boxhny13 img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.w3l-grids-hny-2 .boxhny13 .boxhny-content {
+  top: 45%;
+  opacity: 0;
+  z-index: 1;
+  transform: translate(10%, -30%);
+  transition: all .2s ease-out 0s;
+  text-align: center;
+}
+
+
+.w3l-grids-hny-2 .boxhny13:hover .boxhny-content {
+  opacity: 1;
+  transform: translate(0, -50%);
+  transition-delay: .2s;
+}
+
+.w3l-grids-hny-2 .boxhny13 .title {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+  padding-top: 14px;
+}
+
+
+.w3l-grids-hny-2 .boxhny13 .title:hover {
+  color: #ff7315;
+}
+
+
+/* hasta aquui */
+
+
+
+
 .my-pagination /deep/ .ngx-pagination .current {
   background: #343a40;
 }

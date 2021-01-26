@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-10">
   <h1 class="text-center mb-5">Detalles del Producto</h1>
 
 
@@ -22,11 +22,11 @@
       <div class="col-md-8">
         <div class="card-body">
           <h3 class="card-title">{{ prod.title | uppercase }}</h3>
-          <p class="card-text">{{ prod.description }}</p>
-          <p class="card-text">Precio: ${{ prod.price }}</p>
-          <p class="card-text">Categoria: {{ prod.category }}</p>
-          <p class="card-text" *ngIf="prod.marca">Marca: {{ prod.marca }}</p>
-          <p class="card-text">Cantidad Disponible: {{ prod.cantidad }}</p>
+          <p class="card-text h5">{{ prod.description }}</p>
+          <p class="card-text h5">Precio: ${{ prod.price }}</p>
+          <p class="card-text h5">Categoria: {{ prod.category }}</p>
+          <p class="card-text h5" *ngIf="prod.marca">Marca: {{ prod.marca }}</p>
+          <p class="card-text h5">Cantidad Disponible: {{ prod.cantidad }}</p>
           <div class="linea"></div>
         </div>
       </div>
@@ -38,9 +38,7 @@
           <div class="card responsive ml-5 mt-5 mb-5">
             <img
               [src]="url"
-              class="rounded img-shadow"
-              width="100%"
-              height="auto"
+              class="rounded img-fluid img-shadow"
               alt="{{prod.title}"
               (click)="mostrar(url)"
               data-bs-toggle="modal" 

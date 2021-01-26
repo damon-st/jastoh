@@ -29,21 +29,25 @@ export class PodructosComponent implements OnInit {
   totalItems: number =0;
 
   loading: boolean = true;
+
+  buscarPor: string = '';
   
   constructor(private prodSVC: ProductosService,
     private route: Router,
     private title: Title) {
       this.title.setTitle('Productos')
+      this.buscarPor = 'Mujer';
      }
 
   ngOnInit(): void {
-   this.getProduct('Mujer');
+   this.getProduct(this.buscarPor);
    this.getCategorys();
   }
 
 
   getProduct(ref: any): void{
     this.productos = [];
+    this.buscarPor = ref;
     this.prodSVC.productos(ref).subscribe(res=>{
       res.forEach(val =>{
         this.productos.push(val as ProductsI);
@@ -72,6 +76,7 @@ export class PodructosComponent implements OnInit {
 
   buscar(form: Serach): void{
    this.productos = [];
+   this.buscarPor = form.buscar;
    this.prodSVC.searchProduc(form.buscar.toLocaleLowerCase()).valueChanges().subscribe(res => {
     res.forEach(val =>{
       this.productos.push(val as ProductsI);
