@@ -22,7 +22,7 @@ export class PodructosComponent implements OnInit {
   productos: ProductsI[] = [];
   categorys: CategoryI[] = [];
 
-  search = new FormGroup({buscar: new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(30)
+  search = new FormGroup({buscar: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(30)
   ])});
 
   pageActual: number = 1;

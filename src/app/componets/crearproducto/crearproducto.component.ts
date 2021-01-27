@@ -52,6 +52,7 @@ export class CrearproductoComponent implements OnInit {
     if(this.imgRef.length > 0){
       this.producto.url?.push(...this.imgRef);
       this.producto.imgPortada = this.imgRef[0];
+      this.producto.title = this.producto.title?.toLocaleLowerCase();
       
       this.productSVC.createProduct(this.producto).then(res => {
       this.router.navigate(['/productos']);
