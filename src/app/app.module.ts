@@ -28,6 +28,8 @@ import { LoginComponent } from './componets/login/login.component';
 import { AuthService } from './services/auth.service';
 import { CrearproductoComponent } from './componets/crearproducto/crearproducto.component';
 
+import {NgxCaptchaModule} from 'ngx-captcha';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,8 @@ import { CrearproductoComponent } from './componets/crearproducto/crearproducto.
     AngularFireDatabaseModule,
     NgxPaginationModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxCaptchaModule
   ],
   providers: [{provide:BUCKET,useValue:'gs://variedadesjastho.appspot.com'},ProductosService,AuthService],
   bootstrap: [AppComponent]
