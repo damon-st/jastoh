@@ -16,7 +16,7 @@ export class AppComponent  implements OnInit{
 
   ngOnInit(): void {
     this.recapcha.execute(environment.llave.key,'homepage', (token) => {
-      console.log("this token" + token);
+      // console.log("this token" + token);
       
     })
   }
