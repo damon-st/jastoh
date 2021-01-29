@@ -84,7 +84,7 @@
               </ul>
           </div>
           <div class="col-md-9" *ngIf="productos.length>0">
-            <div class="mt-5"  *ngFor="let prod of productos | paginate:{itemsPerPage: 12, currentPage: pageActual, totalItems: totalItems }">
+            <div class="mt-5"  *ngFor="let prod of productos | paginate:{itemsPerPage: 9, currentPage: pageActual, totalItems: totalItems }">
               <div class="responsive " >
                 <div class="card img-shadow">
                       <img [src]="prod.imgPortada" class="card-img-top rounded img-fluid"  alt="{{prod.title}}">

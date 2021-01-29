@@ -36,12 +36,24 @@ export class PodructosComponent implements OnInit {
     private route: Router,
     private title: Title) {
       this.title.setTitle('Productos')
-      this.buscarPor = 'Mujer';
+      this.buscarPor = 'Todo';
      }
 
   ngOnInit(): void {
-   this.getProduct(this.buscarPor);
+  //  this.getProduct(this.buscarPor);
+  this.getAllProduct();
    this.getCategorys();
+  }
+
+  getAllProduct(){
+    this.productos = [];
+    this.prodSVC.getAllProducts().subscribe(res => {
+      res.forEach(val => {
+        this.productos.push(val as ProductsI);
+      });
+      this.totalItems = this.productos.length;
+      this.loading = false;
+    })
   }
 
 

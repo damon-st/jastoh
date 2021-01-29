@@ -50,6 +50,11 @@ export class ProductosService {
 
   deleteImg(url: any){
    return this.storate.refFromURL(url).delete();
+  
+  }
+
+   getAllProducts(){
+    return this.db.list('Ropa',query => query.limitToFirst(18)).valueChanges();
   }
 
   async createProduct(product: ProductsI){
@@ -60,4 +65,6 @@ export class ProductosService {
     });
     return up;
   }
+
+
 }
