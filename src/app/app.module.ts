@@ -29,6 +29,7 @@ import { AuthService } from './services/auth.service';
 import { CrearproductoComponent } from './componets/crearproducto/crearproducto.component';
 
 import {NgxCaptchaModule} from 'ngx-captcha';
+import { PieComponent } from './componets/pie/pie.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {NgxCaptchaModule} from 'ngx-captcha';
     DetailsComponent,
     ErrorpageComponent,
     LoginComponent,
-    CrearproductoComponent
+    CrearproductoComponent,
+    PieComponent
   ],
   imports: [
     BrowserModule,
