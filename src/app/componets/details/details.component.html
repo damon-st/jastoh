@@ -1,5 +1,5 @@
 <div class="container mt-10">
-  <h1 class="text-center mb-5">Detalles del Producto</h1>
+  <h1 class="text-center mb-5 border-bottom">Detalles del Producto</h1>
 
 
   <div class="text-center" *ngIf="produto.length<1">
@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h3 class="card-title">{{ prod.title | uppercase }}</h3>
+          <h2 class="card-title text-center mb-5">{{ prod.title | uppercase }}</h2>
           <p class="card-text h5">{{ prod.description }}</p>
           <p class="card-text h5">Precio: ${{ prod.price }}</p>
           <p class="card-text h5">Categoria: {{ prod.category }}</p>
@@ -36,7 +36,7 @@
     </div>
     <div class="row">
       <div class="col-sm">
-        <h5 class="text-center">Mas imagenes del Productos</h5>
+        <h5 class="text-center d-block">Mas imagenes del Productos</h5>
         <div class="mt-5" *ngFor="let url of urls">
           <div class="card responsive ml-5 mt-5 mb-5">
             <img
@@ -77,7 +77,7 @@
 
 <div class="container mt-5">
 
-  <h1 class="text-center">Contactanos</h1>
+  <h1 class="text-center border-bottom">Contactanos</h1>
 
   <h2 class="text-center me-2 bottom-5">
       Puedes contactarnos atraves de nuestras redes sociales o via aplicaiones de mensajeria
@@ -98,7 +98,7 @@
 </div>
 
 
-  <h2 class="text-center mt-5">Productos Relacionados</h2>
+  <h2 class="text-center mt-5 border-bottom">Productos Relacionados con <span>{{cate}}</span></h2>
 
   <div class="container mr-5">
         <div class="mt-5" *ngFor="let prod of productos">

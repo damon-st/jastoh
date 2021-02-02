@@ -23,6 +23,8 @@ export class DetailsComponent implements OnInit {
 
   imagem: string = '';
 
+  cate: any;
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private producSvc: ProductosService,
@@ -33,9 +35,9 @@ export class DetailsComponent implements OnInit {
     this.title.setTitle('Detalles del Producto');
 
     const id = this.route.snapshot.paramMap.get('id');
-    const cate = this.route.snapshot.paramMap.get('cate');
+    this.cate = this.route.snapshot.paramMap.get('cate');
     
-    this.getProduct(cate,id);
+    this.getProduct(this.cate,id);
     
 
     this.router.events.subscribe((events)=>{

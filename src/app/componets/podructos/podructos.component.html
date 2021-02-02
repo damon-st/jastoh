@@ -1,5 +1,5 @@
 <div class="container mt-10">
-  <h1 class="text-center ">Listado de Productos</h1>
+  <h1 class="text-center border-bottom ">Listado de Productos</h1>
 
 </div>
 <div>
@@ -7,28 +7,28 @@
 
   <div class="container mt-5">
     <div class="row">
-      <div class="col-sm">
-        <img src="assets/images/grid1.jpg" class="rounded-circle img-fluid d-block img-anim-small"  alt="bolsas de mano">
+      <div class="col col-lg-2">
+        <img src="assets/images/grid1.jpg" (click)="getProduct('Bolsos de Mano')" class="rounded-circle img-fluid d-block img-anim-small"  alt="bolsas de mano">
         <h5 class="listado text-center" (click)="getProduct('Bolsos de Mano')">Bolsos de Mano</h5>
       </div>
-      <div class="col-sm">
-        <img src="assets/images/grid2.jpg" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
+      <div class="col col-lg-2">
+        <img src="assets/images/grid2.jpg" (click)="getProduct('Zapatos')" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
         <h5 class="listado text-center" (click)="getProduct('Zapatos')">Zapatos</h5>
       </div>
-      <div class="col-sm">
-        <img src="assets/images/grid3.jpg" class="rounded-circle d-block img-fluid img-anim-small"   alt="zapatos">
+      <div class="col col-lg-2">
+        <img src="assets/images/grid3.jpg"  (click)="getProduct('Relojes')" class="rounded-circle d-block img-fluid img-anim-small"   alt="zapatos">
         <h5 class="listado text-center" (click)="getProduct('Relojes')">Relojes</h5>
       </div>
-      <div class="col-sm">
-        <img src="assets/images/grid4.jpg" class="rounded-circle img-fluid d-block img-anim-small"   alt="zapatos">
+      <div class="col col-lg-2">
+        <img src="assets/images/grid4.jpg" (click)="getProduct('Ropa')"  class="rounded-circle img-fluid d-block img-anim-small"   alt="zapatos">
         <h5 class="listado text-center" (click)="getProduct('Ropa')">Ropa</h5>
       </div>
-      <div class="col-sm">
-        <img src="assets/images/grid5.jpg" class="rounded-circle img-fluid d-block img-anim-small" alt="zapatos">
+      <div class="col col-lg-2">
+        <img src="assets/images/grid5.jpg" (click)="getProduct('Bolsos de Mano')" class="rounded-circle img-fluid d-block img-anim-small" alt="zapatos">
         <h5 class="listado text-center" (click)="getProduct('Bolsos de Mano')">Accesorios</h5>
       </div>
-      <div class="col-sm">
-        <img src="assets/images/grid6.jpg" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
+      <div class="col col-lg-2">
+        <img src="assets/images/grid6.jpg" (click)="getProduct('Perfumes')" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
         <h5 class="listado text-center" (click)="getProduct('Perfumes')">Perfumes</h5>
       </div>
     </div>
@@ -75,7 +75,7 @@
 
    
       <div class="row no-span">
-          <div class="col-md-3">
+          <div class="col-4">
             <ul class="list-group mt-5" >
                 <li class="list-group-item bg-dark text-white h5" aria-current="true">Buscar por: <span class="title">{{buscarPor}}</span></li>
                 <div *ngFor="let cate of categorys">
@@ -83,7 +83,7 @@
                 </div>            
               </ul>
           </div>
-          <div class="col-md-9" *ngIf="productos.length>0">
+          <div class="col-8" *ngIf="productos.length>0">
             <div class="mt-5"  *ngFor="let prod of productos | paginate:{itemsPerPage: 9, currentPage: pageActual, totalItems: totalItems }">
               <div class="responsive " >
                 <div class="card img-shadow">
