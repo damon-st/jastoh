@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import {map} from 'rxjs/operators';
 import { ImageUrlsI } from 'src/app/models/imageurl';
@@ -24,6 +24,8 @@ export class DetailsComponent implements OnInit {
   imagem: string = '';
 
   cate: any;
+
+  videoURL: any;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -58,6 +60,10 @@ export class DetailsComponent implements OnInit {
 
    mostrar(img: any){
      this.imagem = img;
+   }
+
+   mostrarVideo(video: any){
+     this.videoURL = video;
    }
 
 
@@ -109,6 +115,16 @@ export class DetailsComponent implements OnInit {
 
   relacionadosProductos(cate: any, id:any){
     this.router.navigate(['/detalles',cate,id]);
+  }
+
+  isVideoOImage(valor: any) : string{
+    console.log(valor);
+    
+    if(valor.includes('.mp4')){
+      return 'video';
+    }
+    return 'image';
+    
   }
 
 }

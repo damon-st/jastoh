@@ -39,14 +39,31 @@
         <h5 class="text-center d-block">Mas imagenes del Productos</h5>
         <div class="mt-5" *ngFor="let url of urls">
           <div class="card responsive ml-5 mt-5 mb-5">
-            <img
+            <div *ngIf="isVideoOImage(url) === 'video'; then video else imagen">
+
+            </div>
+            <ng-template #video>
+              <p class="text-center opcacity-text">REPRODUCIR VIDEO RELACIONADO AL PRODUCTO</p>
+              <img
+              src="assets/images/video.png"
+              class="rounded img-fluid img-shadow"
+              alt="{{prod.title}}"
+              (click)="mostrarVideo(url)"
+              data-bs-toggle="modal" 
+              data-bs-target="#videoModal"
+            />
+            </ng-template>
+            <ng-template #imagen>
+              <img
               [src]="url"
               class="rounded img-fluid img-shadow"
-              alt="{{prod.title}"
+              alt="{{prod.title}}"
               (click)="mostrar(url)"
               data-bs-toggle="modal" 
               data-bs-target="#exampleModal"
             />
+            </ng-template>
+           
           </div>
         </div>
       </div>
@@ -72,6 +89,24 @@
     </div>
   </div>
 </div>
+
+<!-- Modal VIDEO -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <video class="centrar-video" [src]="videoURL" width="420" controls autoplay></video>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- contactos -->
 
