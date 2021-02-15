@@ -1,10 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
-import {map} from 'rxjs/operators';
 import { ImageUrlsI } from 'src/app/models/imageurl';
 import { ProductsI } from 'src/app/models/product-model';
 import { ProductosService } from 'src/app/services/productos.service';
-import  {pairwise}from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -118,7 +116,6 @@ export class DetailsComponent implements OnInit {
   }
 
   isVideoOImage(valor: any) : string{
-    console.log(valor);
     
     if(valor.includes('.mp4')){
       return 'video';
