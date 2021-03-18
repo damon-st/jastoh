@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { MetasvcService } from '../../services/metasvc.service';
 
 @Component({
   selector: 'app-contacts',
@@ -8,11 +9,17 @@ import { Title } from '@angular/platform-browser';
 })
 export class ContactsComponent implements OnInit {
 
-  constructor(private title: Title) {
+  constructor(private title: Title,
+    private seo: MetasvcService) {
     this.title.setTitle('Contactos');
    }
 
   ngOnInit(): void {
+    this.seo.generateTags({
+      title: 'Contactos',
+      description: 'Contactanos a traves de nuestra redes solicales o aplicaciones de mensajeria',
+      slug: 'contactos'
+    });
   }
 
 

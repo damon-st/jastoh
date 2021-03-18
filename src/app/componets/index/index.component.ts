@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from 'src/app/services/auth.service';
+import { MetasvcService } from '../../services/metasvc.service';
  
 
 
@@ -15,12 +16,17 @@ import { AuthService } from 'src/app/services/auth.service';
 export class IndexComponent implements OnInit {
 
   constructor(private authSvc: AuthService,
-    private title: Title) {
+    private title: Title,
+    private seo: MetasvcService) {
       this.title.setTitle('Jastoh')
      }
 
   ngOnInit(): void {
- 
+      this.seo.generateTags({
+        title: 'Variedades Jastoh',
+        description:'Productos para hombre mujer hogar y variedades',
+        slug:'inicio'
+      });
   }
 
 

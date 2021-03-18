@@ -4,6 +4,7 @@ import { ImageUrlsI } from 'src/app/models/imageurl';
 import { ProductsI } from 'src/app/models/product-model';
 import { ProductosService } from 'src/app/services/productos.service';
 import { Title } from '@angular/platform-browser';
+import { MetasvcService } from '../../services/metasvc.service';
 
 @Component({
   selector: 'app-details',
@@ -28,7 +29,8 @@ export class DetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private producSvc: ProductosService,
-              private title: Title) {
+              private title: Title,
+              private seo: MetasvcService) {
                }
 
   ngOnInit(): void {
@@ -82,9 +84,21 @@ export class DetailsComponent implements OnInit {
          // console.log(url);
           
         }
+
+        //seo
+        this.seo.generateTags({
+          title: this.produto[0].title,
+          description: this.produto[0].description,
+          image: this.produto[0].imgPortada,
+          slug: `detalles/${cate}/${id}`
+        });
+
       });
       
     });
+
+   
+
     this.producSvc.getProductsLimint(3,cate).valueChanges().subscribe(res =>{
         res.forEach(prod =>{
           this.productos.push(prod as ProductsI);

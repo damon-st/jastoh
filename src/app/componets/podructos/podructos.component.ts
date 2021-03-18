@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { CategoryI } from 'src/app/models/categorias';
 import { ProductosService } from 'src/app/services/productos.service';
 import {ProductsI} from '../../models/product-model';
+import { MetasvcService } from '../../services/metasvc.service';
+
 
 
 export interface Serach{
@@ -34,7 +36,8 @@ export class PodructosComponent implements OnInit {
   
   constructor(private prodSVC: ProductosService,
     private route: Router,
-    private title: Title) {
+    private title: Title,
+    private seo: MetasvcService) {
       this.title.setTitle('Productos')
       this.buscarPor = 'Todo';
      }
@@ -43,6 +46,11 @@ export class PodructosComponent implements OnInit {
   //  this.getProduct(this.buscarPor);
   this.getAllProduct();
    this.getCategorys();
+   this.seo.generateTags({
+     title: 'Listado de Productos',
+     description: 'Lista de productos para hombre, mujer, niño y niñas',
+     slug:'productos'
+   });
   }
 
   getAllProduct(){
