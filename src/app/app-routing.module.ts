@@ -8,6 +8,7 @@ import { IndexComponent } from './componets/index/index.component';
 import { LoginComponent } from './componets/login/login.component';
 import { PodructosComponent } from './componets/podructos/podructos.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ProductopruebaComponent } from './componets/productoprueba/productoprueba.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'inicio', pathMatch: 'full'},

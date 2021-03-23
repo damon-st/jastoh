@@ -15,7 +15,7 @@ import { MetasvcService } from '../../services/metasvc.service';
 })
 export class IndexComponent implements OnInit {
 
-  constructor(private authSvc: AuthService,
+  constructor(
     private title: Title,
     private seo: MetasvcService) {
       this.title.setTitle('Jastoh')
@@ -28,18 +28,5 @@ export class IndexComponent implements OnInit {
         slug:'inicio'
       });
   }
-
-
-  getAceptacion(): boolean{
-   return this.authSvc.recuperarAceptacion();
-  }
-
-  aceptarCookies(){
-    this.authSvc.aceptarCookies();
-  }
-  
-
-
-
 }
 

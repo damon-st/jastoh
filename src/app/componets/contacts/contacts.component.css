@@ -1,3 +1,10 @@
+.contactos{
+    overflow: hidden;
+}
+
+.contactos-degradado{
+    color: rgb(49, 49, 49);
+}
 .animacion-icon-whatsapp{
     position: relative;
     animation-name: movimiento-whatsapp;

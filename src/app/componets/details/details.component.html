@@ -37,6 +37,8 @@
     <div class="row">
       <div class="col-sm">
         <h5 class="text-center d-block">Mas imagenes del Productos</h5>
+
+
         <div class="mt-5" *ngFor="let url of urls">
           <div class="card responsive ml-5 mt-5 mb-5">
             <div *ngIf="isVideoOImage(url) === 'video'; then video else imagen">
@@ -54,6 +56,7 @@
             />
             </ng-template>
             <ng-template #imagen>
+
               <img
               [src]="url"
               class="rounded img-fluid img-shadow"

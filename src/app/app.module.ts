@@ -30,6 +30,7 @@ import { CrearproductoComponent } from './componets/crearproducto/crearproducto.
 
 import {NgxCaptchaModule} from 'ngx-captcha';
 import { PieComponent } from './componets/pie/pie.component';
+import { ProductopruebaComponent } from './componets/productoprueba/productoprueba.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PieComponent } from './componets/pie/pie.component';
     ErrorpageComponent,
     LoginComponent,
     CrearproductoComponent,
-    PieComponent
+    PieComponent,
+    ProductopruebaComponent
   ],
   imports: [
     BrowserModule,

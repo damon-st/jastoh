@@ -1,126 +1,178 @@
-<div class="container mt-10">
-  <h1 class="text-center border-bottom ">Listado de Productos</h1>
 
-</div>
-<div>
-
-
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col col-lg-2">
-        <img src="assets/images/grid1.jpg" (click)="getProduct('Bolsos de Mano')" class="rounded-circle img-fluid d-block img-anim-small"  alt="bolsas de mano">
-        <h5 class="listado text-center" (click)="getProduct('Bolsos de Mano')">Bolsos de Mano</h5>
-      </div>
-      <div class="col col-lg-2">
-        <img src="assets/images/grid2.jpg" (click)="getProduct('Zapatos')" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
-        <h5 class="listado text-center" (click)="getProduct('Zapatos')">Zapatos</h5>
-      </div>
-      <div class="col col-lg-2">
-        <img src="assets/images/grid3.jpg"  (click)="getProduct('Relojes')" class="rounded-circle d-block img-fluid img-anim-small"   alt="zapatos">
-        <h5 class="listado text-center" (click)="getProduct('Relojes')">Relojes</h5>
-      </div>
-      <div class="col col-lg-2">
-        <img src="assets/images/grid4.jpg" (click)="getProduct('Ropa')"  class="rounded-circle img-fluid d-block img-anim-small"   alt="zapatos">
-        <h5 class="listado text-center" (click)="getProduct('Ropa')">Ropa</h5>
-      </div>
-      <div class="col col-lg-2">
-        <img src="assets/images/grid5.jpg" (click)="getProduct('Bolsos de Mano')" class="rounded-circle img-fluid d-block img-anim-small" alt="zapatos">
-        <h5 class="listado text-center" (click)="getProduct('Bolsos de Mano')">Accesorios</h5>
-      </div>
-      <div class="col col-lg-2">
-        <img src="assets/images/grid6.jpg" (click)="getProduct('Perfumes')" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
-        <h5 class="listado text-center" (click)="getProduct('Perfumes')">Perfumes</h5>
-      </div>
-    </div>
-  </div>
-
-
-    <div class="container">
-
-
-
-        <div class="row mt-5 nav nav-tabs" *ngIf="">
-          <div class="col-sm">
-            <button class="btn btn-dark btn-hover" (click)="getProduct('Mujer')">Para Mujer</button>
+    <!-- ========================= SECTION PAGETOP ========================= -->
+    <section class="section-pagetop bg mt-5">
+      <div class="container">
+          <h2 class="title-page text-center border-bottom">Listado de Productos</h2>
+      
+          <div class="container mt-5">
+            <div class="row">
+              <div class="col col-lg-2">
+                <img src="assets/images/grid1.jpg" (click)="getProduct('Bolsos de Mano')" class="rounded-circle img-fluid d-block img-anim-small"  alt="bolsas de mano">
+                <h5 class="listado text-center" (click)="getProduct('Bolsos de Mano')">Bolsos de Mano</h5>
+              </div>
+              <div class="col col-lg-2">
+                <img src="assets/images/grid2.jpg" (click)="getProduct('Zapatos')" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
+                <h5 class="listado text-center" (click)="getProduct('Zapatos')">Zapatos</h5>
+              </div>
+              <div class="col col-lg-2">
+                <img src="assets/images/grid3.jpg"  (click)="getProduct('Relojes')" class="rounded-circle d-block img-fluid img-anim-small"   alt="zapatos">
+                <h5 class="listado text-center" (click)="getProduct('Relojes')">Relojes</h5>
+              </div>
+              <div class="col col-lg-2">
+                <img src="assets/images/grid4.jpg" (click)="getProduct('Ropa')"  class="rounded-circle img-fluid d-block img-anim-small"   alt="zapatos">
+                <h5 class="listado text-center" (click)="getProduct('Ropa')">Ropa</h5>
+              </div>
+              <div class="col col-lg-2">
+                <img src="assets/images/grid5.jpg" (click)="getProduct('Bolsos de Mano')" class="rounded-circle img-fluid d-block img-anim-small" alt="zapatos">
+                <h5 class="listado text-center" (click)="getProduct('Bolsos de Mano')">Accesorios</h5>
+              </div>
+              <div class="col col-lg-2">
+                <img src="assets/images/grid6.jpg" (click)="getProduct('Perfumes')" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
+                <h5 class="listado text-center" (click)="getProduct('Perfumes')">Perfumes</h5>
+              </div>
+            </div>
           </div>
-          <div class="col-sm">
-            <button class="btn btn-dark btn-hover"  (click)="getProduct('Hombre')">Para Hombre</button>
-          </div>
-    
-          <div class="col-sm">
-            <button class="btn btn-dark btn-hover" (click)="getProduct('NiñoyNiña')">Para Niño y Niña</button>
-          </div>
-         
-          <div class="col-sm">
-            <button class="btn btn-dark btn-hover" (click)="getProduct('Hogar')">Para el Hogar</button>
-          </div>
-          
-          <div class="col-sm">
-            <button class="btn btn-dark btn-hover" (click)="getProduct('Variedades')">Variedades</button>
-          </div>
-         
-        </div>
-      </div>
+
+      </div> <!-- container //  -->
+      </section>
+      <!-- ========================= SECTION INTRO END// ========================= -->
+
+
+
 
       <div class="container mt-5">
         <form  [formGroup]="search" (ngSubmit)="buscar(search.value)">
           <div class="d-flex"
           >
-          <input id="buscar" name="buscar" class="form-control me-2" formControlName="buscar" type="search" placeholder="Escribe el producto que estas buscado" aria-label="Buscar" pattern="[a-zA-Z0-9 ]*">
-          <button class="btn btn-outline-success" [disabled]="search.invalid" type="submit">Buscar</button>
+          <input id="buscar" name="buscar" class="form-control me-2" formControlName="buscar" type="search" placeholder="Escribe el producto que estas buscado" aria-label="Buscar" pattern="[a-zA-ZñÑ0-9 ]*">
+          <button class="btn btn-outline-success" [disabled]="search.invalid" type="submit">Buscar<i class="fas fa-search"></i></button>
         </div>
       
         </form>
       </div>
 
-   
-      <div class="row no-span">
-          <div class="col-4">
-            <ul class="list-group mt-5" >
-                <li class="list-group-item bg-dark text-white h5" aria-current="true">Buscar por: <span class="title">{{buscarPor}}</span></li>
-                <div *ngFor="let cate of categorys">
-                 <li class="list-group-item cursor-pointer hover-black" (click)="getProduct(cate.id)">{{cate.id}}</li>
-                </div>            
-              </ul>
-          </div>
-          <div class="col-8" *ngIf="productos.length>0">
-            <div class="mt-5"  *ngFor="let prod of productos | paginate:{itemsPerPage: 9, currentPage: pageActual, totalItems: totalItems }">
-              <div class="responsive " >
-                <div class="card img-shadow">
-                      <img [src]="prod.imgPortada" class="card-img-top rounded img-fluid"  alt="{{prod.title}}">
-                      <div class="card-body">
-                        <h5 class="card-title text-center">{{prod.title | uppercase}}</h5>
-                        <p class="card-text">{{prod.description}}</p>
-                        <div class="linea"></div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                          <button class="btn btn-dark btn-hover mt-1" 
-                          (click)="productDetail(prod.id,prod.category)">Mas Informacion</button>
-                        </div>
-                      </div>
-                  </div>
-              </div>  
-            
-            </div>
-          </div>
-          <div class="col-lg mt-5" *ngIf="loading">
-            <div class="d-flex justify-content-center">
-              <div class="spinner-border" style="width: 10rem; height: 10rem;" role="status">
-                <span class="visually-hidden">Loading...</span>
+
+        <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-content padding-y">
+      <div class="container">
+      
+      <div class="row">
+          <aside class="col-md-3">
+              
+      <div class="card">
+          <article class="filter-group">
+              <header class="card-header">
+                  <a class="cursor-pointer decoration-none"  data-bs-toggle="collapse" data-bs-target="#collapse_1" aria-expanded="true" >
+                      <i class="icon-control fa fa-chevron-down"></i>
+                      <h6 >Buscar por: <span class="title">{{buscarPor}}</span></h6>
+                  </a>
+              </header>
+              <div class="filter-content collapse show" id="collapse_1" style="">
+                  <div class="card-body">
+                      
+              
+                      <ul class="list-menu">
+                      <div *ngFor="let cate of categorys">
+                        <li class="list-group-item cursor-pointer hover-black" (click)="getProduct(cate.id)">{{cate.id}}</li>
+                       </div>  
+                      </ul>
+      
+                  </div> <!-- card-body.// -->
               </div>
-          </div>
-          </div>
-          <div class="col-lg mt-5" *ngIf="productos.length<1">
-            <div class="alert alert-warning" role="alert">
-               <p class="h5">Por el momento no ay productos que monstrar lo sentimos :(</p>
-            </div>
+          </article> <!-- filter-group  .// -->
+         
+      </div> <!-- card.// -->
+      
+          </aside> <!-- col.// -->
+          <main class="col-md-9">
+      
+      
+      
+            
+      <div  *ngIf="productos.length>0">
+
+     
+      <article class="card card-product-list" *ngFor="let prod of productos | paginate:{itemsPerPage: 9, currentPage: pageActual, totalItems: totalItems }" >
+          <div class="row no-gutters" >
+              <aside class="col-md-3">
+                  <a  class="img-wrap">
+                      <span class="badge badge-danger"> NEW </span>
+                      <img src="{{prod.imgPortada}}" alt="{{prod.title}}">
+                  </a>
+              </aside> <!-- col.// -->
+              <div class="col-md-6">
+                  <div class="info-main">
+                      <a (click)="productDetail(prod.id,prod.category)" class="h5 title cursor-pointer"> {{prod.title | uppercase}}</a>
+                      <div class="rating-wrap mb-3">
+                          <ul class="rating-stars">
+                              <li style="width:100%" class="stars-active"> 
+                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                  <i class="fa fa-star"></i> 
+                              </li>
+                              <li>
+                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                  <i class="fa fa-star"></i> 
+                              </li>
+                          </ul>
+                          <!-- <div class="label-rating">7/10</div> -->
+                      </div> <!-- rating-wrap.// -->
+                      
+                      <p> {{prod.description}}</p>
+                  </div> <!-- info-main.// -->
+              </div> <!-- col.// -->
+              <aside class="col-sm-3">
+                  <div class="info-aside">
+                      <div class="price-wrap">
+                          <span class="price h5"> ${{prod.price}}</span>	
+                          <!-- <del class="price-old"> $198</del> -->
+                      </div> <!-- info-price-detail // -->
+                      <p class="text-success">Categoria: {{prod.category}}</p>
+                      <br>
+                      <p>
+                          <a  class="btn btn-dark btn-block btn-hover" (click)="productDetail(prod.id,prod.category)"> Detalles  <i class="fas fa-list-ul"></i> </a>
+                          <!-- <a  class="btn btn-light btn-block"><i class="fa fa-heart"></i> 
+                              <span class="text">Add to wishlist</span>
+                          </a> -->
+                      </p>
+                  </div> <!-- info-aside.// -->
+              </aside> <!-- col.// -->
+          </div> <!-- row.// -->
+      </article> <!-- card-product .// -->
+      
+    </div>
+
+      <div class="col-lg mt-5" *ngIf="loading">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" style="width: 10rem; height: 10rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
           </div>
       </div>
-      <pagination-controls class="my-pagination" (pageChange)="pageActual = $event"
+      </div>
+      <div class="col-lg mt-5" *ngIf="productos.length<1">
+        <div class="alert alert-warning" role="alert">
+           <p class="h5">Por el momento no ay productos que monstrar lo sentimos :(</p>
+        </div>
+      </div>
       
-      previousLabel="Anterior"
-      nextLabel="Siguiente"
       
-      ></pagination-controls>
+      
+      <nav aria-label="Page navigation sample">
+        <ul class="pagination">
+          <pagination-controls class="my-pagination" (pageChange)="pageActual = $event"
+           previousLabel="Anterior"
+            nextLabel="Siguiente"
+            ></pagination-controls>
 
-</div>
-
+        </ul>
+      </nav>
+      
+          </main> <!-- col.// -->
+      
+      </div>
+      
+      </div> <!-- container .//  -->
+      </section>
+      <!-- ========================= SECTION CONTENT END// ========================= -->
+      

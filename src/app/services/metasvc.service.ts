@@ -40,5 +40,6 @@ export class MetasvcService {
       property: 'og:url',
       content: `https://variedadesjastho.web.app/${config.slug}`,
     });
+    this.meta.updateTag({name: 'description', content: config.description});
   }
 }
