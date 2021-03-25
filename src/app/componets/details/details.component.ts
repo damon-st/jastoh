@@ -5,7 +5,9 @@ import { ProductsI } from 'src/app/models/product-model';
 import { ProductosService } from 'src/app/services/productos.service';
 import { Title } from '@angular/platform-browser';
 import { MetasvcService } from '../../services/metasvc.service';
+declare var $ : any;
 
+// import * as $ from 'jquery';
 
 @Component({
   selector: 'app-details',
@@ -59,8 +61,36 @@ export class DetailsComponent implements OnInit {
 
   }
 
+  // tslint:disable-next-line: use-lifecycle-interface
   ngAfterViewInit(): void {
-  
+  //   var modalClosingMethod = "Programmatically";
+
+  //  $('#videoModal').on('click', (e) => {
+  //   if ($(e.target).parent().attr("data-dismiss")){
+  //     modalClosingMethod = "by Corner X";
+  //   }
+  //   else if ($(e.target).hasClass("btn-secondary")){
+  //     modalClosingMethod = "by Close Button";
+  //     console.log("btn");
+  //   }
+  //   else{
+  //     modalClosingMethod = "by Background Overlay";
+  //     console.log("afueraa");
+      
+  //   }
+  //  });
+
+  //   // Modal hidden event fired
+  // $('#videoModal').on('hidden.bs.modal', function () {
+  //   console.log("Modal closed "+modalClosingMethod);
+  // });
+
+  window.onpopstate = (e:any) => {
+    // console.log("hoplaadads" + e);
+    $('#videoModal').modal('hide');
+    $('#exampleModal').modal('hide');
+
+   };
   }
 
    mostrar(img: any){

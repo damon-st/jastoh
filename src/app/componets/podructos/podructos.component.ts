@@ -56,6 +56,7 @@ export class PodructosComponent implements OnInit {
   getAllProduct(){
     this.productos = [];
     this.prodSVC.getAllProducts().subscribe(res => {
+      this.productos = [];
       res.forEach(val => {
         this.productos.push(val as ProductsI);
       });

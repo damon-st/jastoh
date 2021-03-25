@@ -31,6 +31,7 @@ import { CrearproductoComponent } from './componets/crearproducto/crearproducto.
 import {NgxCaptchaModule} from 'ngx-captcha';
 import { PieComponent } from './componets/pie/pie.component';
 import { ProductopruebaComponent } from './componets/productoprueba/productoprueba.component';
+import { NotImageDirective } from './not-image.directive';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ProductopruebaComponent } from './componets/productoprueba/productoprue
     LoginComponent,
     CrearproductoComponent,
     PieComponent,
-    ProductopruebaComponent
+    ProductopruebaComponent,
+    NotImageDirective
   ],
   imports: [
     BrowserModule,

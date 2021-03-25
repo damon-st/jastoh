@@ -56,6 +56,7 @@
                 (click)="mostrar(url)"
                 data-toggle="modal" 
                 data-target="#exampleModal"
+                appNotImage
               />
               </ng-template>
   
@@ -137,7 +138,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <img [src]="imagem" class="rounded img-fluid img-shadow" width="100%" alt="producto">
+        <img [src]="imagem" class="rounded img-fluid img-shadow" width="100%" alt="producto" appNotImage>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -204,10 +205,11 @@
           class="rounded img-shadow"
           width="100%"
           height="auto"
-          alt="{{prod.title}"
+          alt="{{prod.title}}"
           (click)="mostrar(prod.imgPortada)"
           data-toggle="modal"
           data-target="#exampleModal"
+          appNotImage
         />
         <div class="card-body">
           <h5 class="card-title text-center">{{prod.title | uppercase}}</h5>
