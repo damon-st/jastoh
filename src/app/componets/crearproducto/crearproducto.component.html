@@ -7,7 +7,7 @@
 
         <div class="mb-3">
           <label for="description" class="form-label">Descripcion del Producto</label>
-          <input [(ngModel)]="producto.description" type="text" class="form-control" id="description" name="description" aria-describedby="description" required>
+          <textarea name="description" [(ngModel)]="producto.description" class="form-control" id="description" placeholder="Descripciond del producto" required></textarea>
         </div>
 
         <div class="mb-3">

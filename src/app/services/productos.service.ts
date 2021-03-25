@@ -54,7 +54,7 @@ export class ProductosService {
   }
 
    getAllProducts(){
-    return this.db.list('Ropa',query => query.limitToFirst(18)).valueChanges();
+    return this.db.list('Ropa',query => query.limitToFirst(50)).valueChanges();
   }
 
   async createProduct(product: ProductsI){
