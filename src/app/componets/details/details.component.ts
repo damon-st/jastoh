@@ -6,6 +6,7 @@ import { ProductosService } from 'src/app/services/productos.service';
 import { Title } from '@angular/platform-browser';
 import { MetasvcService } from '../../services/metasvc.service';
 
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -58,6 +59,10 @@ export class DetailsComponent implements OnInit {
 
   }
 
+  ngAfterViewInit(): void {
+  
+  }
+
    mostrar(img: any){
      this.imagem = img;
    }
@@ -76,6 +81,9 @@ export class DetailsComponent implements OnInit {
       res.forEach(index =>{
         this.produto.push(index as ProductsI);
       })
+
+      this.title.setTitle(this.produto[0].title ? this.produto[0].title : 'Detalles del Producto');
+
 
       this.producSvc.getImages(cate,id).snapshotChanges().subscribe(res =>{
         for(let x = 0; x < res.length ; x++){

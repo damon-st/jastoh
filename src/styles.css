@@ -260,22 +260,54 @@
 
 
 .w-50{
-  width: 50%;
-  margin: 0 auto;
+  width: 100%;
+  margin: 15px;
 }
 
 .carousel-control-next,
 .carousel-control-prev{
   background: #343a40;
-  opacity: .2;
+  border-radius: 20px;
+  opacity: .4;
+  height: 50px;
+  margin-top: 50%;
+  
 }
 
 
 
 /* Stilos coeapdos */
 
+.related-products {
+	padding-top: 0;
+	padding-bottom: 50px;
+}
+
+.related-products .section-title {
+	margin-bottom: 50px;
+}
+
+.related-products .section-title h2:before {
+	display: none;
+}
+
+.spad {
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+
+
+
+@media only screen and (min-width: 1200px) {
+	.container {
+		max-width: 1170px;
+	}
+}
 
 /* fin de estiso copiado */
+
+
 .my-pagination /deep/ .ngx-pagination .current {
   background: #343a40;
 }

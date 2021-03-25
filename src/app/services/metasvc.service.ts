@@ -28,18 +28,23 @@ export class MetasvcService {
     this.meta.updateTag({ property: 'og:type', content: 'article' });
     this.meta.updateTag({
       property: 'og:site_name',
-      content: 'My Website Name',
+      content: 'Jastho',
     });
+    this.meta.updateTag({property: 'og:locale', content: 'es_ES'});
     this.meta.updateTag({ property: 'og:title', content: config.title });
     this.meta.updateTag({
       property: 'og:description',
       content: config.description,
     });
+
+    this.meta.updateTag({ property: 'og:image:width', content: '600' });
+    this.meta.updateTag({ property: 'og:image:height', content: '1000' });
     this.meta.updateTag({ property: 'og:image', content: config.image });
     this.meta.updateTag({
       property: 'og:url',
       content: `https://variedadesjastho.web.app/${config.slug}`,
     });
     this.meta.updateTag({name: 'description', content: config.description});
+    this.meta.updateTag({name: 'robots', content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'});
   }
 }
