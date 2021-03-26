@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router';
 import { CategoryI } from 'src/app/models/categorias';
 import { ProductosService } from 'src/app/services/productos.service';
 import {ProductsI} from '../../models/product-model';
@@ -33,9 +33,12 @@ export class PodructosComponent implements OnInit {
   loading: boolean = true;
 
   buscarPor: string = '';
+
+  cate: any;
   
   constructor(private prodSVC: ProductosService,
     private route: Router,
+    private router: ActivatedRoute,
     private title: Title,
     private seo: MetasvcService) {
       this.title.setTitle('Productos')
@@ -44,13 +47,21 @@ export class PodructosComponent implements OnInit {
 
   ngOnInit(): void {
   //  this.getProduct(this.buscarPor);
-  this.getAllProduct();
+  this.cate = this.router.snapshot.paramMap.get('cate');
+
+  if(this.cate !== null){
+    this.getProduct(this.cate);
+  }else{
+    this.getAllProduct();
+  }
    this.getCategorys();
    this.seo.generateTags({
      title: 'Listado de Productos',
      description: 'Lista de productos para hombre, mujer, niño y niñas',
      slug:'productos'
    });
+
+   
   }
 
   getAllProduct(){
@@ -69,6 +80,7 @@ export class PodructosComponent implements OnInit {
   getProduct(ref: any): void{
     this.productos = [];
     this.buscarPor = ref;
+    this.route.navigate(['/productos',ref]);
     this.prodSVC.productos(ref).subscribe(res=>{
       res.forEach(val =>{
         this.productos.push(val as ProductsI);

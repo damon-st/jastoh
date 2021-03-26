@@ -1,5 +1,5 @@
 <div class="container mt-10">
-    <form >
+    <form #formulario >
         <div class="mb-3">
           <label for="title" class="form-label">Titulo del Producto</label>
           <input [(ngModel)]="producto.title" type="text" class="form-control" id="title" name="title" aria-describedby="title" required>
@@ -19,7 +19,7 @@
 
         <div class="mb-3">
           <label for="category" class="form-label">Seleciona la Categoria </label>
-          <select  class="form-select" name="category" [(ngModel)]="producto.category"  aria-label="Default select example">
+          <select  class="form-control" name="category" [(ngModel)]="producto.category"  aria-label="Default select example">
             <option *ngFor="let cate of categorias" value="{{cate.id}}">{{cate.id}}</option>
           </select>
         </div>
@@ -46,47 +46,85 @@
         <div class="mb-3 mt-3">
           <div class="row row-cols-1 row-cols-md-2 g-4" *ngIf="imgRef.length>0">
             <div class="col" *ngFor="let img of imgRef;let i=index">
-              <div class="card">
-                <img [src]="img" class="card-img-top img-shadow" alt="producto" (click)="showImage(img)" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <div class="card-body">
-                  <button type="button" name="btn_borrar" id="btn_borrar" class="btn btn-danger btn-lg btn-block " (click)="deleteImg(img,i)">Borrar Imagen</button>
-                </div>
-              </div>
+              <div *ngIf="isVideoOImage(img) ==='video' then video else imagen"></div>
+              <ng-template #imagen>
+               
+                  <img [src]="img" appNotImage class="rounded cursor-pointer" width="200px"  alt="producto" (click)="showImage(img)" data-toggle="modal" data-target="#exampleModal">
+                  <div class="card-body">
+                    <button type="button" name="btn_borrar" id="btn_borrar" class="btn btn-danger btn-lg btn-block " (click)="deleteImg(img,i)">Borrar Imagen</button>
+                  </div>
+               
+              </ng-template>
+              <ng-template #video>
+                
+                  <img src="assets/images/video.png" appNotImage  class="rounded cursor-pointer"  width="200px" alt="producto" (click)="showImage(img)" data-toggle="modal" data-target="#videoModal">
+                  <div class="card-body">
+                    <button type="button" name="btn_borrar" id="btn_borrar" class="btn btn-danger btn-lg btn-block " (click)="deleteImg(img,i)">Borrar Imagen</button>
+                  </div>
+              
+              </ng-template>
             </div>
           </div>
         </div>
 
+        <div class="alert alert-danger mt-5 mb-5" role="alert" *ngIf="errores">
+          Ocurrio un error
+          {{errores}} <i class="fas fa-exclamation-circle fa-2x"></i>
+         </div>
         <div class="d-grid gap-2 mb-5">
-          <button type="submit" class="btn btn-primary" (click)="crear()">Crear</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="crear()" >Crear</button>
         </div>
+
       </form>
 
 
-      <div class="alert alert-danger mt-5 mb-5" role="alert" *ngIf="errores">
-       Ocurrio un error
-       {{errores}}
-      </div>
 
 
 
 
-<!-- Modal -->
+<!-- Modal IMagen -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Estas viendo la imagen suvida ya en el servidor puedes borrarla si gustas</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
       </div>
       <div class="modal-body">
         <img [src]="url" alt="producto" width="100%" height="auto">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
 
+</div>
+
+
+<!-- Modal Video -->
+
+<!-- Modal VIDEO -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <!-- <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModal" aria-hidden="true"> -->
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" onclick="document.getElementById('videomio').pause();"  data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <video #videomio  id="videomio" class="centrar-video" [src]="url" width="420" controls autoplay></video>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"  onclick="document.getElementById('videomio').pause();" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
 </div>

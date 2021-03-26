@@ -49,20 +49,23 @@ export class CrearproductoComponent implements OnInit {
   }
 
   crear(){
-    if(this.imgRef.length > 0){
-      this.producto.url?.push(...this.imgRef);
-      this.producto.imgPortada = this.imgRef[0];
-      this.producto.title = this.producto.title?.toLocaleLowerCase();
+    if(this.imgRef.length < 1){
+      this.errores = 'Porfavor sube una imagen como minimo para el producto :(';
+   }else if(this.producto.title ==='' || this.producto.description ||
+    this.producto.category ===''){
+    this.errores = 'Porfavor rellena todos los campos';
+   }else {
+    this.producto.url?.push(...this.imgRef);
+    this.producto.imgPortada = this.imgRef[0];
+    this.producto.title = this.producto.title?.toLocaleLowerCase();
+    
+    this.productSVC.createProduct(this.producto).then(res => {
+    this.router.navigate(['/productos']);
       
-      this.productSVC.createProduct(this.producto).then(res => {
-      this.router.navigate(['/productos']);
-        
-      }).catch(error => {
-        console.log(error);
-        this.errores = error;
-      });
-   }else{
-     this.errores = 'Porfavor sube una imagen como minimo para el producto :(';
+    }).catch(error => {
+      console.log(error);
+      this.errores = error;
+    });
    }
     
   }
@@ -77,7 +80,7 @@ export class CrearproductoComponent implements OnInit {
         const size = files.size;
         const name = files.name;
         
-        if(size >= 1000){
+        if(size >= 400){
           this.valorImagen = 10;
           const id = name + Math.random().toString(36).substring(2);
           const filePath = `Products/${id}`;
@@ -120,5 +123,16 @@ export class CrearproductoComponent implements OnInit {
   showImage(url: any){
     this.url = url;
   }
+ 
   
+
+  
+  isVideoOImage(valor: any) : string{
+    
+    if(valor.includes('.mp4')){
+      return 'video';
+    }
+    return 'image';
+    
+  }
 }
