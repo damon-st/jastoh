@@ -153,7 +153,7 @@ export class DetailsComponent implements OnInit {
       case 'whatsapp':
         console.log(this.myUrl);
         
-        window.open(`https://api.whatsapp.com/send?phone=593984334637&text=Me,%20Interesa%20este%20producto%20${this.myUrl}`,'_blanck');
+        window.open(`https://api.whatsapp.com/send?phone=593984334637&text=Me%20interesa%20este%20producto%20${this.myUrl}`,'_blanck');
         break;
       case 'instagram':
         window.open('https://www.instagram.com/variedadesjastoh/?igshid=v5r52ujztizn','_blanck');
