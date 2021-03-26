@@ -146,11 +146,14 @@ export class DetailsComponent implements OnInit {
     });
    }
 
-
+   myUrl:any;
    contactos(url: string){
+     this.myUrl = 'https://variedadesjastho.web.app' +this.router.url;
     switch(url){
       case 'whatsapp':
-        window.open('https://api.whatsapp.com/send?phone=593984334637&text=Me,%20Interesa%20sus%20productos%20','_blanck');
+        console.log(this.myUrl);
+        
+        window.open(`https://api.whatsapp.com/send?phone=593984334637&text=Me,%20Interesa%20este%20producto%20${this.myUrl}`,'_blanck');
         break;
       case 'instagram':
         window.open('https://www.instagram.com/variedadesjastoh/?igshid=v5r52ujztizn','_blanck');

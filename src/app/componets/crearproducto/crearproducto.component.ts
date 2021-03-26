@@ -51,7 +51,7 @@ export class CrearproductoComponent implements OnInit {
   crear(){
     if(this.imgRef.length < 1){
       this.errores = 'Porfavor sube una imagen como minimo para el producto :(';
-   }else if(this.producto.title ==='' || this.producto.description ||
+   }else if(this.producto.title ==='' || this.producto.description === '' ||
     this.producto.category ===''){
     this.errores = 'Porfavor rellena todos los campos';
    }else {
