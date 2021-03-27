@@ -9,6 +9,7 @@ import { LoginComponent } from './componets/login/login.component';
 import { PodructosComponent } from './componets/podructos/podructos.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProductopruebaComponent } from './componets/productoprueba/productoprueba.component';
+import { ProductDetailsComponent } from './componets/product-details/product-details.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'inicio', pathMatch: 'full'},
@@ -16,7 +17,7 @@ const routes: Routes = [
   {path: 'contactos', component: ContactsComponent},
   {path: 'productos', component:PodructosComponent},
   {path: 'productos/:cate', component:PodructosComponent},
-  {path: 'detalles/:cate/:id',component:DetailsComponent},
+  {path: 'detalles/:cate/:id',component:ProductDetailsComponent},
   {path: 'login',component: LoginComponent},
   {path: 'crear', component: CrearproductoComponent,canActivate:[AuthGuard]},
   {path: '**', component: ErrorpageComponent}

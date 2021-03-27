@@ -120,7 +120,7 @@
 
 
 
-.footer{
+/* .footer{
   height: 50px;
   background: #343a40;
   color: white;
@@ -133,7 +133,7 @@
   letter-spacing: 1px;
   margin-bottom: 0;
   margin-top: 5px;
-}
+} */
 
 
 .opcacity-text{
@@ -267,6 +267,7 @@
 .carousel-control-next,
 .carousel-control-prev{
   background: #343a40;
+  border: #343a40 solid 5px;
   border-radius: 20px;
   opacity: .4;
   height: 50px;
@@ -308,8 +309,21 @@
 /* fin de estiso copiado */
 
 
+
+
+/* Nuevo coóado */
+/*fginb copaoid  */
+
+
+
+
+
+
+
+
 .my-pagination /deep/ .ngx-pagination .current {
   background: #343a40;
+  
 }
 
 @media only screen and (max-width: 700px) {

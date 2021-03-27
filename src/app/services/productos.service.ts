@@ -57,6 +57,10 @@ export class ProductosService {
     return this.db.list('Ropa',query => query.limitToFirst(200)).valueChanges();
   }
 
+  getAllLimitProducts(limit:any){
+    return this.db.list('Ropa',query => query.limitToLast(limit)).valueChanges();
+  }
+
   async createProduct(product: ProductsI){
     const key = await  this.db.list('Ropa').push(product);
 

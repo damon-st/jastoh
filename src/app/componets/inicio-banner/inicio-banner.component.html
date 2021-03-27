@@ -1,0 +1,134 @@
+<!-- Categories Section Begin -->
+<section class="categories">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 p-0">
+                <div class="categories__item categories__large__item set-bg"
+                style="background-image:url('assets/img/category-1.jpg')">
+                <div class="categories__text">
+                    <h1>Moda femenina</h1>
+                    <p>Encontraras varios accesorios,modelos de ropa y mucho mas solo para ti.</p>
+                    <a routerLink="/productos/Mujer">Ver Productos</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                    <div class="categories__item set-bg"  style="background-image:url('assets/img/category-2.jpg')">
+                        <div class="categories__text">
+                            <h4>Moda para Hombre</h4>
+                            <p>50 productos</p>
+                            <a routerLink="/productos/Hombre">Ver Productos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                    <div class="categories__item set-bg"  style="background-image:url('assets/img/category-3.jpg')">
+                        <div class="categories__text">
+                            <h4>Moda para Niño y Niña</h4>
+                            <p>50 productos</p>
+                            <a routerLink="/productos/NiñoyNiña">Ver Productos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                    <div class="categories__item set-bg"  style="background-image:url('assets/img/category-4.jpg')">
+                        <div class="categories__text">
+                            <h4>Maquillajes</h4>
+                            <p>50 productos</p>
+                            <a routerLink="/productos/Maquillaje">Ver Productos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                    <div class="categories__item set-bg"  style="background-image:url('assets/img/category-5.jpg')">
+                        <div class="categories__text">
+                            <h4>Accessories</h4>
+                            <p>50 productos</p>
+                            <a routerLink="/productos/Accesorios">Ver Productos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<!-- Categories Section End -->
+
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <div class="section-title">
+                    <h4>Nuevos Productos</h4>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8">
+                <ul class="filter__controls">
+                    <li class="active" data-filter="*">Todo</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row property__gallery">
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women" *ngFor="let product of productosLimit">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" style="background-image:url('{{product.imgPortada}}')">
+                        <div class="label sale">Nuevo</div>
+                        <ul class="product__hover">
+                            <li><a class="cursor-pointer" (click)="mostrarImg(product.imgPortada)" data-toggle="modal" data-target="#imgModal" ><i class="fas fa-expand-arrows-alt"></i></a></li>
+                            <li><a class="cursor-pointer" (click)="showDetails(product.id,product.category)" ><i class="fas fa-shopping-bag"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a >{{product.title | uppercase}}</a></h6>
+                        <div class="">
+                            <ul class="rating-stars">
+                                <li style="width:100%" class="stars-active"> 
+                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                    <i class="fa fa-star"></i> 
+                                </li>
+                                <li>
+                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                    <i class="fa fa-star"></i> 
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product__price">$ {{product.price}}</div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    </section>
+    <!-- Product Section End -->
+    
+
+ 
+  <!-- Modal Imagen -->
+  <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Imagen del Producto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img [src]="url" class="img-fluid rounded">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn bt-block btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  

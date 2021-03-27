@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { map, take } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 
+declare var $ : any;
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -24,7 +26,17 @@ export class NavbarComponent implements OnInit {
        this.isAuth = false;
      }
    });
-    
+
+    //Canvas Menu
+      $(".canvas__open").on('click', function () {
+        $(".offcanvas-menu-wrapper").addClass("active");
+        $(".offcanvas-menu-overlay").addClass("active");
+    });
+
+    $(".offcanvas-menu-overlay, .offcanvas__close").on('click', function () {
+        $(".offcanvas-menu-wrapper").removeClass("active");
+        $(".offcanvas-menu-overlay").removeClass("active");
+    });
   }
 
 

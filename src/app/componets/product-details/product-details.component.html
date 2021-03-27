@@ -1,0 +1,300 @@
+
+
+<!-- loandig  -->
+
+<div class="text-center" *ngIf="produto.length < 1">
+    <div class="spinner-grow" style="width: 10rem; height: 10rem" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option mt-10">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="breadcrumb__links">
+                  <a ><i class="fas fa-clipboard"></i> Detalles</a>
+                  <a class="cursor-pointer" routerLink="/productos/{{cate}}">{{cate}}</a>
+                
+                  <span *ngIf="produto.length > 0">{{produto[0].title | uppercase}}</span>
+                  
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad" *ngIf="produto.length > 0">
+    <div class="container" *ngFor="let prod of produto">
+        <div class="row">
+            <div class="col-lg-6">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                      <li *ngFor="let url of urls" data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
+                      </li>
+                    </ol>
+                    <div class="carousel-inner">
+                      <ng-container *ngFor="let url of urls; let i = index; first as isFirst">
+                        <div [ngClass]="isFirst ? 'carousel-item active' : 'carousel-item'">
+                          <div *ngIf="
+                              isVideoOImage(url) === 'video';
+                              then video;
+                              else imagen
+                            "></div>
+                          <ng-template #video>
+                            <p class="text-center opcacity-text">
+                              REPRODUCIR VIDEO RELACIONADO AL PRODUCTO
+                            </p>
+                            <img src="assets/images/video.png" class="rounded img-fluid img-shadow w-100" alt="{{ prod.title }}"
+                              (click)="mostrarVideo(url)" data-toggle="modal" data-target="#videoModal" />
+                          </ng-template>
+                          <ng-template #imagen>
+                            <img [src]="url" class="rounded img-fluid w-100" alt="{{ prod.title }}" (click)="mostrar(url)"
+                              data-toggle="modal" data-target="#exampleModal" appNotImage />
+                          </ng-template>
+                        </div>
+                      </ng-container>
+                    </div>
+        
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product__details__text">
+                    <h3>{{prod.title | uppercase}}<span></span></h3>
+                    <ul class="rating-stars">
+                        <li ylste="width: 100%" class="stars-active">
+                          <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </li>
+                        <li>
+                          <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </li>
+                      </ul>
+                    <div class="product__details__price">$ {{prod.price}} </div>
+                    <p>{{prod.description}}</p>
+                    <div class="product__details__button">
+                        <div class="quantity">
+                            <span>Cantidad Disponible:</span>
+                            <div class="pro-qty">
+                                <input type="number" value="{{prod.cantidad}}" disabled>
+                            </div>
+                        </div>
+                        <a  class="cart-btn cursor-pointer" (click)="contactos('whatsapp')" ><span class="icon_bag_alt"></span> ADQUIRIR</a>
+                        <ul *ngIf="">
+                            <li><a ><span class="icon_heart_alt"></span></a></li>
+                            <li><a ><span class="icon_adjust-horiz"></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__details__widget">
+                        <ul>
+                            <li>
+                                <span>Disponibilidad:</span>
+                                <div class="stock__checkbox">
+                                    <label for="stockin">
+                                        En Stock
+                                        <input type="checkbox" checked id="stockin" disabled>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </li>
+                            <li *ngIf="">
+                                <span>Available color:</span>
+                                <div class="color__checkbox">
+                                    <label for="red">
+                                        <input type="radio" name="color__radio" id="red" checked>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label for="black">
+                                        <input type="radio" name="color__radio" id="black">
+                                        <span class="checkmark black-bg"></span>
+                                    </label>
+                                    <label for="grey">
+                                        <input type="radio" name="color__radio" id="grey">
+                                        <span class="checkmark grey-bg"></span>
+                                    </label>
+                                </div>
+                            </li>
+                            <li *ngIf="">
+                                <span>Available size:</span>
+                                <div class="size__btn">
+                                    <label for="xs-btn" class="active">
+                                        <input type="radio" id="xs-btn">
+                                        xs
+                                    </label>
+                                    <label for="s-btn">
+                                        <input type="radio" id="s-btn">
+                                        s
+                                    </label>
+                                    <label for="m-btn">
+                                        <input type="radio" id="m-btn">
+                                        m
+                                    </label>
+                                    <label for="l-btn">
+                                        <input type="radio" id="l-btn">
+                                        l
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Promocion:</span>
+                                <p>Envio gratis (Preguntar primero)</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Descripcion</a>
+                        </li>
+                        <li class="nav-item" *ngIf="">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Specification</a>
+                        </li>
+                        <li class="nav-item" *ngIf="">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews ( 2 )</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <h6>Descripcion del Producto</h6>
+                            <p>{{prod.description}}</p>
+                            
+                        </div>
+                        <div class="tab-pane" id="tabs-2" role="tabpanel" *ngIf="">
+                            <h6>Especificaciones</h6>
+                            <p></p>
+                           
+                        </div>
+                        <div class="tab-pane" id="tabs-3" role="tabpanel" *ngIf="">
+                            <h6>Reviews</h6>
+                            <p></p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="related__title">
+                    <h5>Productos Relacionados</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let produ of productos"> 
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" style="background-image:url('{{produ.imgPortada}}')">
+                        <div class="label sale">Nuevo</div>
+                        <ul class="product__hover">
+                            <li><a class="cursor-pointer"  (click)="mostrar(produ.imgPortada)" data-toggle="modal" data-target="#exampleModal" ><i class="fas fa-expand-arrows-alt"></i></a></li>
+                            <li><a class="cursor-pointer" (click)="relacionadosProductos(produ.category, produ.id)" ><i class="fas fa-shopping-bag"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a >{{produ.title | uppercase}}</a></h6>
+                        <ul class="rating-stars">
+                            <li style="width:100%" class="stars-active"> 
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> 
+                            </li>
+                            <li>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> 
+                            </li>
+                        </ul>
+                        <div class="product__price">$ {{produ.price}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->
+
+  <!-- contactos -->
+
+  <div class="container mt-5">
+    <h2 class="text-center border-bottom">Contactanos</h2>
+
+    <h4 class="text-center me-2 bottom-5">
+      Puedes contactarnos atraves de nuestras redes sociales o via aplicaiones
+      de mensajeria
+    </h4>
+
+    <div class="row ml-5">
+      <div class="col-sm">
+        <img src="assets/images/w.jpg" alt="whatsapp" width="100" class="roudend float-start contact"
+          (click)="contactos('whatsapp')" />
+      </div>
+      <div class="col-sm">
+        <img src="assets/images/i.png" alt="Instagram" width="100" class="roudend mx-auto contact"
+          (click)="contactos('instagram')" />
+      </div>
+      <div class="col-sm">
+        <img src="assets/images/telgram.png" alt="Telegram" width="100" class="roudend float-end contact"
+          (click)="contactos('telegram')" />
+      </div>
+    </div>
+  </div>
+
+
+ <!-- Modal Imagen-->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img [src]="imagem" class="img-fluid rounded img-shadow" width="100%" alt="producto" appNotImage />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal VIDEO -->
+  <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModal" aria-hidden="true"
+    data-backdrop="static" data-keyboard="false">
+    <!-- <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModal" aria-hidden="true"> -->
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" onclick="document.getElementById('videomio').pause();"
+            data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <video #videomio id="videomio" class="centrar-video" [src]="videoURL" width="420" controls autoplay></video>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('videomio').pause();"
+            data-dismiss="modal">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

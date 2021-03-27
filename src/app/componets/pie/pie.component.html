@@ -1,3 +1,59 @@
+
+<!-- Footer Section Begin -->
 <footer class="footer">
-    <p class="text-center">© {{year}} Jasto´H. Todos los derechos reservados </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-7">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                        <a routerLink="/inicio"><img src="assets/images/icono.jpeg" alt="Variedades Jastho"></a>
+                    </div>
+                    <p>Bienvenidos a Jasto'H aqui encontraras una variedad de 
+                        productos tanto para caballero,dama,niño y niña o una
+                         gran variedad de productos, no lo pienses mas y hecha
+                          un vistazo a todos nuestros productos
+                    </p>
+                    
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-5">
+                <div class="footer__widget">
+                    <h6>ENLACES RÁPIDOS </h6>
+                    <ul>
+                        <li><a class="cursor-pointer" routerLink="/contactos">Contactanos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4">
+                <div class="footer__widget">
+                    <h6>Mi Cuenta</h6>
+                    <ul>
+                        <li><a >My cuenta</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-8 col-sm-8">
+                <div class="footer__newslatter">
+                   
+                    <div class="footer__social">
+                        <a class="cursor-pointer" (click)="contactos('facebook')"><i class="fab fa-facebook"></i></a>
+                        <a class="cursor-pointer" (click)="contactos('instagram')"><i class="fab fa-instagram"></i></a>
+                        <a class="cursor-pointer" (click)="contactos('whatsapp')"><i class="fab fa-whatsapp"></i></a>
+                        <a class="cursor-pointer" (click)="contactos('telegram')"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <div class="footer__copyright__text">
+                    <p class="text-center">© {{year}} Jasto´H. Todos los derechos reservados </p>
+                </div>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </div>
+        </div>
+    </div>
 </footer>
+<!-- Footer Section End -->
