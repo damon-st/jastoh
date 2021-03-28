@@ -37,6 +37,8 @@ export class NavbarComponent implements OnInit {
         $(".offcanvas-menu-wrapper").removeClass("active");
         $(".offcanvas-menu-overlay").removeClass("active");
     });
+
+    $("#preloder").delay(200).fadeOut("slow");
   }
 
 

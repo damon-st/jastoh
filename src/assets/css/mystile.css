@@ -201,8 +201,8 @@ ol {
 	margin-top: -13px;
 	margin-left: -13px;
 	border-radius: 60px;
-	animation: loader 0.8s linear ;
-	-webkit-animation: loader 0.8s linear ;
+	animation: loader 0.8s infinite ;
+	-webkit-animation: loader 0.8s infinite ;
 }
 
 @keyframes loader {
