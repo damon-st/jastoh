@@ -322,6 +322,10 @@
   cursor: pointer;
 }
 
+.color-rojo{
+  color: #ca1515;
+}
+
 
 @media only screen and (min-width: 1200px) {
 	.container {

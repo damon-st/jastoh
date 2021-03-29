@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare var $:any;
+
 @Component({
   selector: 'app-pie',
   templateUrl: './pie.component.html',
@@ -12,6 +14,29 @@ export class PieComponent implements OnInit {
 
   ngOnInit(): void {
     this.year = new Date().getFullYear();
+  }
+
+  ngAfterViewInit(): void {
+    $('.owl-carousel').owlCarousel({
+      loop:true,
+      margin:10,
+      nav:false,
+      dost:true,
+      smartSpeed: 1200,
+      autoHeight: false,
+      autoplay: true,
+      responsive:{
+          0:{
+              items:1
+          },
+          600:{
+              items:3
+          },
+          1000:{
+              items:5
+          }
+      }
+  })
   }
 
   contactos(url: string){

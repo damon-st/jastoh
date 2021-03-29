@@ -571,6 +571,37 @@ ol {
 	margin-right: 0;
 }
 
+/* my banner  SLIDER*/
+.banner__slider_custom {
+	text-align: center;
+}
+
+.banner__slider_custom.owl-carousel .owl-dots {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.banner__slider_custom.owl-carousel .owl-dots button {
+	height: 12px;
+	width: 12px;
+	background: #a1a1a1;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.banner__slider_custom.owl-carousel .owl-dots button.active {
+	background: #ca1515;
+}
+
+.banner__slider_custom.owl-carousel .owl-dots button:last-child {
+	margin-right: 0;
+}
+
+
+/* FIN MY BANNER */
+
 /*---------------------
   Trend
 -----------------------*/
