@@ -140,7 +140,7 @@
               <aside class="col-md-3">
                   <a  class="img-wrap">
                       <span class="badge badge-danger"> Nuevo </span>
-                      <img src="{{prod.imgPortada}}" alt="{{prod.title}}" appNotImage>
+                      <img class="cursor-pointer"  src="{{prod.imgPortada}}" alt="{{prod.title}}" (click)="productDetail(prod.id,prod.category)" appNotImage>
                   </a>
               </aside> <!-- col.// -->
               <div class="col-md-6">

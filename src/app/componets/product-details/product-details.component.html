@@ -47,11 +47,11 @@
                             <p class="text-center opcacity-text">
                               REPRODUCIR VIDEO RELACIONADO AL PRODUCTO
                             </p>
-                            <img src="assets/images/video.png" class="rounded img-fluid img-shadow w-100" alt="{{ prod.title }}"
+                            <img src="assets/images/video.png" class="rounded cursor-pointer img-fluid img-shadow w-100" alt="{{ prod.title }}"
                               (click)="mostrarVideo(url)" data-toggle="modal" data-target="#videoModal" />
                           </ng-template>
                           <ng-template #imagen>
-                            <img [src]="url" class="rounded img-fluid w-100" alt="{{ prod.title }}" (click)="mostrar(url)"
+                            <img [src]="url" class="rounded cursor-pointer img-fluid w-100" alt="{{ prod.title }}" (click)="mostrar(url)"
                               data-toggle="modal" data-target="#exampleModal" appNotImage />
                           </ng-template>
                         </div>
