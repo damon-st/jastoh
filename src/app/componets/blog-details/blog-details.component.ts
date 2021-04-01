@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { BlogI } from '../../models/blog';
 import { ProductosService } from '../../services/productos.service';
 import { CategoryI } from '../../models/categorias';
@@ -20,6 +20,7 @@ export class BlogDetailsComponent implements OnInit {
   urlsImg: any;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private productSVC:ProductosService
               ) {
 
@@ -29,13 +30,37 @@ export class BlogDetailsComponent implements OnInit {
 
 
     const id = this.route.snapshot.paramMap.get('id');
+   
+    this.getBlogDetails(id);
+
+    this.productSVC.getBlogsCategorys().subscribe(res =>{
+      res.forEach(v =>{
+        this.categorys.push(v as CategoryI);
+      });
+    });
+
+    this.router.events.subscribe((events) =>{
+        if(events instanceof NavigationStart){
+
+        }
+        if(events instanceof NavigationEnd){
+          window.scrollTo({top: 0,behavior: 'smooth'});
+          const id  = this.route.snapshot.paramMap.get('id');
+          this.getBlogDetails(id);
+        }
+    })
+  }
+
+  getBlogDetails(id: any){
     this.productSVC.getBlogDetails(id).subscribe(res => {
+      this.blog = [];
       res.forEach(value => {
         this.blog.push(value as BlogI);
       });
       
       if(this.blog.length>0){
         this.productSVC.getBlogsQueryCategories(this.blog[0].category).subscribe(res =>{
+          this.blogsRelacionados =[];
           res.forEach(vl =>{
             this.blogsRelacionados.push(vl as BlogI);
           })
@@ -47,12 +72,6 @@ export class BlogDetailsComponent implements OnInit {
     },
     error =>{
       console.log(error);
-    });
-
-    this.productSVC.getBlogsCategorys().subscribe(res =>{
-      res.forEach(v =>{
-        this.categorys.push(v as CategoryI);
-      });
     });
   }
 
@@ -66,6 +85,10 @@ export class BlogDetailsComponent implements OnInit {
 
   updateUrlImgShow(url:any):void{
     this.urlsImg = url;
+  }
+
+  showProductRela(id:any){
+    this.router.navigate(['/blog/detalles',id]);
   }
 
 }

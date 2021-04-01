@@ -50,10 +50,11 @@ export class PodructosComponent implements OnInit {
     private title: Title,
     private seo: MetasvcService) {
       this.buscarPor = 'Todo';
+      this.title.setTitle('Productos')
      }
 
   ngOnInit(): void {
-    this.title.setTitle('Productos')
+   
 
   //  this.getProduct(this.buscarPor);
   this.cate = this.router.snapshot.paramMap.get('cate');

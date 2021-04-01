@@ -110,7 +110,7 @@ export class ProductDetailsComponent implements OnInit {
         this.produto.push(index as ProductsI);
       })
 
-      this.title.setTitle(this.produto[0].title ? this.produto[0].title : 'Detalles del Producto');
+      // this.title.setTitle(this.produto[0].title ? this.produto[0].title : 'Detalles del Producto');
 
 
       this.producSvc.getImages(cate,id).snapshotChanges().subscribe(res =>{

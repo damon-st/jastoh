@@ -132,7 +132,7 @@
                             <div class="blog__feature__item__pic">
                                 <img width="110px" height="73px" [src]="rel.imgPortada" alt="{{rel.title}}">
                             </div>
-                            <div class="blog__feature__item__text cursor-pointer">
+                            <div class="blog__feature__item__text cursor-pointer" (click)="showProductRela(rel.id)">
                                 <h6>{{rel.title}}</h6>
                                 <span>{{rel.fecha}}</span>
                             </div>
