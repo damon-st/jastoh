@@ -1,37 +1,40 @@
-<div class="container mt-10">
-    <form #formulario >
+<div class="container mt-11">
+  <div class="mt-5">
+    <a  class="btn btn-warning float-right" routerLink="/blog/crear">Crear BLogs</a>
+  </div>
+    <form #formulario [formGroup]="datos" (ngSubmit)="crear(datos.value)" >
         <div class="mb-3">
           <label for="title" class="form-label">Titulo del Producto</label>
-          <input [(ngModel)]="producto.title" type="text" class="form-control" id="title" name="title" aria-describedby="title" required>
+          <input  type="text" class="form-control" id="title" name="title" aria-describedby="title" formControlName="title" required>
         </div>
 
         <div class="mb-3">
           <label for="description" class="form-label">Descripcion del Producto</label>
-          <textarea name="description" [(ngModel)]="producto.description" class="form-control" id="description" placeholder="Descripciond del producto" required></textarea>
+          <textarea name="description"  class="form-control" id="description" placeholder="Descripciond del producto" formControlName="description" required></textarea>
         </div>
 
         <div class="mb-3">
           <label for="marca" class="form-label">Marca del Producto</label>
-          <input [(ngModel)]="producto.marca"  type="text" class="form-control" id="marca" name="marca" aria-describedby="marca">
+          <input   type="text" class="form-control" id="marca" name="marca" aria-describedby="marca" formControlName="marca">
         </div>
        
 
 
         <div class="mb-3">
           <label for="category" class="form-label">Seleciona la Categoria </label>
-          <select  class="form-control" name="category" [(ngModel)]="producto.category"  aria-label="Default select example">
+          <select  class="form-control" name="category"   aria-label="Default select example" formControlName="category">
             <option *ngFor="let cate of categorias" value="{{cate.id}}">{{cate.id}}</option>
           </select>
         </div>
 
         <div class="mb-3">
           <label for="price" class="form-label">Precio del Producto</label>
-          <input [(ngModel)]="producto.price"  type="number" class="form-control" id="price" name="price" aria-describedby="price">
+          <input   type="number" class="form-control" id="price" name="price" aria-describedby="price" formControlName="price">
         </div>
         
         <div class="mb-3">
           <label for="cantidad" class="form-label">Cantidad Disponible del Producto</label>
-          <input [(ngModel)]="producto.cantidad"  type="number" class="form-control" id="cantidad" name="cantidad" aria-describedby="cantidad">
+          <input  type="number" class="form-control" id="cantidad" name="cantidad" aria-describedby="cantidad" formControlName="cantidad">
         </div>
         
         <div class="input-group mb-3">
@@ -71,8 +74,11 @@
           Ocurrio un error
           {{errores}} <i class="fas fa-exclamation-circle fa-2x"></i>
          </div>
+        <div class="alert alert-success mt-5 mb-5" role="alert" *ngIf="exito">
+          {{exito}} <i class="fas fa-check-circle"></i>
+         </div>
         <div class="d-grid gap-2 mb-5">
-          <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="crear()" >Crear</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="datos.invalid" >Crear</button>
         </div>
 
       </form>

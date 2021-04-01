@@ -34,6 +34,9 @@ import { ProductopruebaComponent } from './componets/productoprueba/productoprue
 import { NotImageDirective } from './not-image.directive';
 import { InicioBannerComponent } from './componets/inicio-banner/inicio-banner.component';
 import { ProductDetailsComponent } from './componets/product-details/product-details.component';
+import { BlogComponent } from './componets/blog/blog.component';
+import { BlogDetailsComponent } from './componets/blog-details/blog-details.component';
+import { CreateBlogComponent } from './componets/create-blog/create-blog.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { ProductDetailsComponent } from './componets/product-details/product-det
     ProductopruebaComponent,
     NotImageDirective,
     InicioBannerComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    BlogComponent,
+    BlogDetailsComponent,
+    CreateBlogComponent
   ],
   imports: [
     BrowserModule,

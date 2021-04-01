@@ -55,6 +55,9 @@
       <li class="nav-item">
         <a routerLink="contactos" class="nav-link nav-hover"  routerLinkActive="active">Contactanos</a>
       </li>
+      <li class="nav-item">
+        <a routerLink="blog" class="nav-link nav-hover"  routerLinkActive="active">Blog</a>
+      </li>
 
       <li>
         <a routerLink="login" class="nav-link nav-hover" *ngIf="!isAuth" routerLinkActive="active">Iniciar Session</a>
@@ -82,6 +85,7 @@
                         <li class="cursor-pointer" routerLink="inicio" routerLinkActive="active"><a  >Inicio</a></li>
                         <li class="cursor-pointer" routerLink="productos" routerLinkActive="active"><a >Productos</a></li>
                         <li class="cursor-pointer" routerLink="contactos" routerLinkActive="active"><a >Contactos</a></li>
+                        <li class="cursor-pointer" routerLink="blog" routerLinkActive="active"><a >Blog</a></li>
                         <li class="cursor-pointer" routerLink="login" routerLinkActive="active" *ngIf="!isAuth"><a >Iniciar Session</a></li>
                         <li class="cursor-pointer" routerLink="crear" routerLinkActive="active" *ngIf="isAuth"><a >Crear Producto</a></li>
                     </ul>

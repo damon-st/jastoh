@@ -1,0 +1,131 @@
+<div class="container mt-11">
+   
+      <form #formulario [formGroup]="datos" (ngSubmit)="crear(datos.value)" >
+          <div class="mb-3">
+            <label for="title" class="form-label">Titulo del Blog</label>
+            <input  type="text" class="form-control" id="title" name="title" aria-describedby="title" formControlName="title" required>
+          </div>
+  
+          <div class="mb-3">
+            <label for="contenido" class="form-label">Contendio del Blog</label>
+            <textarea name="contenido"  class="form-control" id="contenido" placeholder="Descripciond del producto" formControlName="contenido" required></textarea>
+          </div>
+  
+          <div class="mb-3">
+            <label for="frases" class="form-label">Escribe alguna Frase para el Blog</label>
+            <textarea name="frases"  class="form-control" id="frases" placeholder="Descripciond del producto" formControlName="frases" required></textarea>
+          </div>
+         
+  
+  
+          <div class="mb-3">
+            <label for="category" class="form-label">Seleciona la Categoria del Blog </label>
+            <select  class="form-control" name="category"   aria-label="Default select example" formControlName="category">
+              <option *ngFor="let cate of categorias" value="{{cate.id}}">{{cate.id}}</option>
+            </select>
+          </div>
+  
+          <div class="mb-3">
+            <label for="autor" class="form-label">Autor del Blog</label>
+            <input   type="text" class="form-control" id="autor" name="autor" aria-describedby="autor" formControlName="autor">
+          </div>
+          
+    
+          
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">Subir Imagenes para el Blog</label>
+            <input #imgFile type="file" class="form-control" id="imgFile" multiple (change)="getImages($event)">
+          </div>
+  
+          <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(valorImagen+'%')"  aria-valuenow="100"  aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+  
+          <div class="mb-3 mt-3">
+            <div class="row row-cols-1 row-cols-md-2 g-4" *ngIf="imgRef.length>0">
+              <div class="col" *ngFor="let img of imgRef;let i=index">
+                <div *ngIf="isVideoOImage(img) ==='video' then video else imagen"></div>
+                <ng-template #imagen>
+                 
+                    <img [src]="img" appNotImage class="rounded cursor-pointer" width="200px"  alt="producto" (click)="showImage(img)" data-toggle="modal" data-target="#exampleModal">
+                    <div class="card-body">
+                      <button type="button" name="btn_borrar" id="btn_borrar" class="btn btn-danger btn-lg btn-block " (click)="deleteImg(img,i)">Borrar Imagen</button>
+                    </div>
+                 
+                </ng-template>
+                <ng-template #video>
+                  
+                    <img src="assets/images/video.png" appNotImage  class="rounded cursor-pointer"  width="200px" alt="producto" (click)="showImage(img)" data-toggle="modal" data-target="#videoModal">
+                    <div class="card-body">
+                      <button type="button" name="btn_borrar" id="btn_borrar" class="btn btn-danger btn-lg btn-block " (click)="deleteImg(img,i)">Borrar Imagen</button>
+                    </div>
+                
+                </ng-template>
+              </div>
+            </div>
+          </div>
+  
+          <div class="alert alert-danger mt-5 mb-5" role="alert" *ngIf="errores">
+            Ocurrio un error
+            {{errores}} <i class="fas fa-exclamation-circle fa-2x"></i>
+           </div>
+          <div class="alert alert-success mt-5 mb-5" role="alert" *ngIf="exito">
+            {{exito}} <i class="fas fa-check-circle"></i>
+           </div>
+          <div class="d-grid gap-2 mb-5">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="datos.invalid" >Crear</button>
+          </div>
+  
+        </form>
+  
+  
+  
+  
+  
+  
+  <!-- Modal IMagen -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Estas viendo la imagen suvida ya en el servidor puedes borrarla si gustas</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+  
+        </div>
+        <div class="modal-body">
+          <img [src]="url" alt="producto" width="100%" height="auto">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  </div>
+  
+  
+  <!-- Modal Video -->
+  
+  <!-- Modal VIDEO -->
+  <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <!-- <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModal" aria-hidden="true"> -->
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" onclick="document.getElementById('videomio').pause();"  data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <video #videomio  id="videomio" class="centrar-video" [src]="url" width="420" controls autoplay></video>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"  onclick="document.getElementById('videomio').pause();" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

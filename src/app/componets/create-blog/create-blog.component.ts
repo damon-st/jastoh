@@ -3,26 +3,23 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { CategoryI } from 'src/app/models/categorias';
-import { ImageUrlsI } from 'src/app/models/imageurl';
 import { ProductsI } from 'src/app/models/product-model';
 import { ProductosService } from 'src/app/services/productos.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { BlogI } from '../../models/blog';
 
 @Component({
-  selector: 'app-crearproducto',
-  templateUrl: './crearproducto.component.html',
-  styleUrls: ['./crearproducto.component.css']
+  selector: 'app-create-blog',
+  templateUrl: './create-blog.component.html',
+  styleUrls: ['./create-blog.component.css']
 })
-export class CrearproductoComponent implements OnInit {
+export class CreateBlogComponent implements OnInit {
 
   datos= new FormGroup({title: new FormControl('',[Validators.required,Validators.minLength(2)]),
-                        description:new FormControl('',[Validators.required,Validators.minLength(2)]),
-                        marca: new FormControl(''),
+                        contenido:new FormControl('',[Validators.required,Validators.minLength(2)]),
+                        frases: new FormControl(''),
                         category: new FormControl('',Validators.required),
-                        price: new FormControl('',[Validators.required,Validators.minLength(1)]),
-                        cantidad: new FormControl('',[Validators.required,Validators.minLength(1)])
-                        });
+                        autor: new FormControl('',[Validators.required,Validators.minLength(1)])                        });
 
   categorias: CategoryI[] = [];
   valorImagen = 0;
@@ -50,30 +47,32 @@ export class CrearproductoComponent implements OnInit {
 
   ngOnInit(): void {
   
-      this.productSVC.getCategorys().subscribe(res =>{
+      this.productSVC.getBlogsCategorys().subscribe(res =>{
+        this.categorias = [];
         res.forEach(cate =>{
           this.categorias.push(cate as CategoryI);
         });
       },error => console.log(error))
   }
 
-  crear(producto: ProductsI){
+  crear(blog: BlogI){
     if(this.imgRef.length < 1){
-      this.errores = 'Porfavor sube una imagen como minimo para el producto :(';
-   }else if(producto.title ==='' || producto.description === '' ||
-    producto.category ===''){
+      this.errores = 'Porfavor sube una imagen como minimo para el blog :(';
+   }else if(blog.title ==='' || blog.contenido === '' ||
+    blog.category ===''){
     this.errores = 'Porfavor rellena todos los campos';
    }else {
-    producto.url = [];
-    producto.url.push(...this.imgRef);
-    producto.imgPortada = this.imgRef[0];
-    producto.title = producto.title?.toLocaleLowerCase();
+    blog.fecha = this.getDate().toLocaleLowerCase();
+    blog.urlImgs = [];
+    blog.urlImgs.push(...this.imgRef);
+    blog.imgPortada = this.imgRef[0];
+    blog.title = blog.title?.toLocaleLowerCase();
     
-    this.productSVC.createProduct(producto).then(res => {
+    this.productSVC.createBlog(blog).then(res => {
     
       this.datos.reset();
       this.imgRef = [];
-      this.exito = "Se a creado exitosamente el Producto puedes seguir creando mas productos";
+      this.exito = "Se a creado exitosamente el Blog";
       this.errores = "";
       this.valorImagen = 0;
       setTimeout(()=>{
@@ -100,7 +99,7 @@ export class CrearproductoComponent implements OnInit {
         if(size >= 400){
           this.valorImagen = 10;
           const id = name + Math.random().toString(36).substring(2);
-          const filePath = `Products/${id}`;
+          const filePath = `Blogs/${id}`;
           const ref = this.storage.ref(filePath);
           const task = this.storage.upload(filePath,files);
           
@@ -152,4 +151,15 @@ export class CrearproductoComponent implements OnInit {
     return 'image';
     
   }
+
+  getDate(): string{
+    const meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    const diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+    const dias = new Array('00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31');
+    const  f=new Date();
+    const ampm = (f.getHours() >=12) ? 'p.m.':'a.m.';
+     return dias[f.getDate()] + " de " + meses[f.getMonth()] + " de " + f.getFullYear();
+    
+  }
+
 }

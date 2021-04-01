@@ -4,6 +4,7 @@ import {AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { ProductsI } from '../models/product-model';
+import { BlogI } from '../models/blog';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,10 @@ export class ProductosService {
     return this.db.list('Categorias').valueChanges();
   }
 
+  getBlogsCategorys(){
+    return this.db.list('BlogCategorias').valueChanges();
+  }
+
 
   deleteImg(url: any){
    return this.storate.refFromURL(url).delete();
@@ -68,6 +73,27 @@ export class ProductosService {
       id: key.key
     });
     return up;
+  }
+
+  async createBlog(blog: BlogI){
+    const key = await  this.db.list('Blogs').push(blog);
+
+   const up = await this.db.list('Blogs').update(key,{
+      id: key.key
+    });
+    return up;
+  }
+  
+  getAllBlogs(limit: any){
+    return this.db.list('Blogs',query => query.limitToFirst(limit)).valueChanges();
+  }
+
+  getBlogDetails(id:any){
+    return this.db.list('Blogs',query  => query.orderByChild('id').equalTo(id)).valueChanges();
+  }
+
+  getBlogsQueryCategories(cat:any){
+    return this.db.list('Blogs',query  => query.orderByChild('category').startAt(cat).endAt(cat+'\uf8ff').limitToFirst(3)).valueChanges();
   }
 
 

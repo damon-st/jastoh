@@ -10,6 +10,9 @@ import { PodructosComponent } from './componets/podructos/podructos.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProductopruebaComponent } from './componets/productoprueba/productoprueba.component';
 import { ProductDetailsComponent } from './componets/product-details/product-details.component';
+import { BlogComponent } from './componets/blog/blog.component';
+import { BlogDetailsComponent } from './componets/blog-details/blog-details.component';
+import { CreateBlogComponent } from './componets/create-blog/create-blog.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'inicio', pathMatch: 'full'},
@@ -18,8 +21,11 @@ const routes: Routes = [
   {path: 'productos', component:PodructosComponent},
   {path: 'productos/:cate', component:PodructosComponent},
   {path: 'detalles/:cate/:id',component:ProductDetailsComponent},
+  {path: 'blog', component:BlogComponent},
+  {path: 'blog/detalles/:id', component:BlogDetailsComponent},
   {path: 'login',component: LoginComponent},
   {path: 'crear', component: CrearproductoComponent,canActivate:[AuthGuard]},
+  {path: 'blog/crear', component:CreateBlogComponent,canActivate:[AuthGuard]},
   {path: '**', component: ErrorpageComponent}
 ];
 
