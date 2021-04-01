@@ -25,7 +25,7 @@
             <div class="col-lg-8 col-md-8">
                 <div class="blog__details__content">
                     <div class="blog__details__item">
-                        <img [src]="blogs.imgPortada" alt="{{blogs.title}}">
+                        <img class="cursor-pointer" [src]="blogs.imgPortada" alt="{{blogs.title}}" (click)="updateUrlImgShow(blogs.imgPortada)" data-toggle="modal" data-target="#imgModal">
                         <div class="blog__details__item__title">
                             <span class="tip">{{blogs.category}}</span>
                             <h4>{{blogs.title | uppercase}}</h4>
@@ -40,7 +40,7 @@
                         <p>{{blogs.contenido}}</p>
                         
                     </div>
-                    <div class="blog__details__quote">
+                    <div class="blog__details__quote" *ngIf="blogs.frases">
                         <div class="icon"><i class="fa fa-quote-left"></i></div>
                         <p>{{blogs.frases}}</p>
                     </div>
@@ -157,3 +157,26 @@
 </section>
 <!-- Blog Details Section End -->
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imgModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Imagen</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img [src]="urlsImg" class="img-fluid" >
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>        </div>
+      </div>
+    </div>
+  </div>

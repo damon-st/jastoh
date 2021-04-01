@@ -11,6 +11,7 @@ import { BlogI } from '../models/blog';
 })
 export class ProductosService {
 
+  public blog: BlogI = {};
   constructor(private db: AngularFireDatabase,
    private storate: AngularFireStorage) { }
 
@@ -83,6 +84,10 @@ export class ProductosService {
     });
     return up;
   }
+
+  updateBlog(id:any,blog:BlogI){
+    return this.db.list('Blogs').update(id,blog);
+  }
   
   getAllBlogs(limit: any){
     return this.db.list('Blogs',query => query.limitToFirst(limit)).valueChanges();
@@ -94,6 +99,11 @@ export class ProductosService {
 
   getBlogsQueryCategories(cat:any){
     return this.db.list('Blogs',query  => query.orderByChild('category').startAt(cat).endAt(cat+'\uf8ff').limitToFirst(3)).valueChanges();
+  }
+
+
+  deleteBlog(id:any){
+    return this.db.list('Blogs',query => query.orderByChild('id').equalTo(id)).remove();
   }
 
 

@@ -4,6 +4,8 @@ import { BlogI } from '../../models/blog';
 import { ProductosService } from '../../services/productos.service';
 import { CategoryI } from '../../models/categorias';
 
+declare var $:any;
+
 @Component({
   selector: 'app-blog-details',
   templateUrl: './blog-details.component.html',
@@ -15,12 +17,17 @@ export class BlogDetailsComponent implements OnInit {
   categorys:CategoryI[] = [];
   blogsRelacionados: BlogI[] = [];
 
+  urlsImg: any;
+
   constructor(private route: ActivatedRoute,
-              private productSVC:ProductosService) {
+              private productSVC:ProductosService
+              ) {
 
                }
 
   ngOnInit(): void {
+
+
     const id = this.route.snapshot.paramMap.get('id');
     this.productSVC.getBlogDetails(id).subscribe(res => {
       res.forEach(value => {
@@ -47,6 +54,18 @@ export class BlogDetailsComponent implements OnInit {
         this.categorys.push(v as CategoryI);
       });
     });
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    window.onpopstate = (e:any) =>{
+      $('#imgModal').modal('hide');
+    }
+  }
+
+  updateUrlImgShow(url:any):void{
+    this.urlsImg = url;
   }
 
 }

@@ -29,7 +29,7 @@ export class PodructosComponent implements OnInit {
   productos: ProductsI[] = [];
   categorys: CategoryI[] = [];
 
-  search = new FormGroup({buscar: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(30)
+  search = new FormGroup({buscar: new FormControl('',[Validators.required,Validators.minLength(2),Validators.maxLength(30)
   ])});
 
   filtro = new FormGroup({minimo: new FormControl('',[Validators.required,Validators.min(1)]),
@@ -133,6 +133,9 @@ export class PodructosComponent implements OnInit {
     });
     this.totalItems = this.productos.length;
     this.loading = false;
+    if(this.totalItems >=1 && this.totalItems < 9  ){
+      this.pageActual = 1;
+    }
    }, error => {
     console.log(error);
     

@@ -25,18 +25,25 @@
       <div class="alert alert-warning" role="alert" *ngIf="blogs.length<1">
         Lo sentimos por el momento no contamos con pots publicados <i class="fas fa-sad-cry"></i>
       </div> 
+      <div class="alert alert-success" role="alert" *ngIf="msg">
+        {{msg}}
+      </div>
     <!-- Breadcrumb End -->
             <div class="row" *ngIf="blogs.length>0">
                 <div class="col-lg-4 col-md-4 col-sm-6" *ngFor="let blog of blogs;let i = index;first as isFirst">
                     <div class="blog__item">
                         <!-- <div [ngClass]="isFirst ? 'blog__item__pic large__item set-bg': 'blog__item__pic set-bg'"  -->
-                        <div class="blog__item__pic set-bg"
+                        <div class="blog__item__pic set-bg" (click)="showDetails(blog.id)"
                         style="background-image: url({{blog.imgPortada}})"></div>
                         <div class="blog__item__text">
                             <h6><a class="cursor-pointer" (click)="showDetails(blog.id)">{{blog.title | uppercase}}</a></h6>
                             <ul>
                                 <li>por <span>{{blog.autor}}</span></li>
                                 <li>{{blog.fecha}}</li>
+                                <li *ngIf="isAuth">
+                                    <button type="button" name="edit" id="edit" class="btn btn-warning mr-2 color-white" (click)="editBlog(blog)"><i class="fas fa-pen"></i></button>
+                                    <button type="button" name="delete" id="delete" class="btn btn-danger" (click)="deleteBlogs(blog.id,blog.imgPortada)"><i class="fas fa-trash-alt"></i></button>
+                                </li>
                             </ul>
                         </div>
                     </div>

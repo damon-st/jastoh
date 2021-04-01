@@ -1,19 +1,21 @@
 <div class="container mt-11">
-   
+   <H1 class="text-center">CREAR BLOG</H1>
       <form #formulario [formGroup]="datos" (ngSubmit)="crear(datos.value)" >
           <div class="mb-3">
             <label for="title" class="form-label">Titulo del Blog</label>
             <input  type="text" class="form-control" id="title" name="title" aria-describedby="title" formControlName="title" required>
+            <input  type="hidden" class="form-control" id="id" name="id" aria-describedby="id" formControlName="id" >
+            <input  type="hidden" class="form-control" id="fecha" name="fecha" aria-describedby="fecha" formControlName="fecha" >
           </div>
   
           <div class="mb-3">
             <label for="contenido" class="form-label">Contendio del Blog</label>
-            <textarea name="contenido"  class="form-control" id="contenido" placeholder="Descripciond del producto" formControlName="contenido" required></textarea>
+            <textarea name="contenido"  class="form-control" id="contenido" placeholder="Contenido para el blog" formControlName="contenido" required></textarea>
           </div>
   
           <div class="mb-3">
             <label for="frases" class="form-label">Escribe alguna Frase para el Blog</label>
-            <textarea name="frases"  class="form-control" id="frases" placeholder="Descripciond del producto" formControlName="frases" required></textarea>
+            <textarea name="frases"  class="form-control" id="frases" placeholder="Frase del blog" formControlName="frases" ></textarea>
           </div>
          
   

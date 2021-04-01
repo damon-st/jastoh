@@ -15,11 +15,7 @@ import { BlogI } from '../../models/blog';
 })
 export class CreateBlogComponent implements OnInit {
 
-  datos= new FormGroup({title: new FormControl('',[Validators.required,Validators.minLength(2)]),
-                        contenido:new FormControl('',[Validators.required,Validators.minLength(2)]),
-                        frases: new FormControl(''),
-                        category: new FormControl('',Validators.required),
-                        autor: new FormControl('',[Validators.required,Validators.minLength(1)])                        });
+  datos: any;
 
   categorias: CategoryI[] = [];
   valorImagen = 0;
@@ -47,6 +43,21 @@ export class CreateBlogComponent implements OnInit {
 
   ngOnInit(): void {
   
+    if(this.productSVC.blog !== undefined){
+      this.datos= new FormGroup({title: new FormControl(this.productSVC.blog.title,[Validators.required,Validators.minLength(2)]),
+                        contenido:new FormControl(this.productSVC.blog.contenido,[Validators.required,Validators.minLength(2)]),
+                        frases: new FormControl(this.productSVC.blog.frases),
+                        category: new FormControl(this.productSVC.blog.category,Validators.required),
+                        id: new FormControl(this.productSVC.blog.id),
+                        fecha: new FormControl(this.productSVC.blog.fecha),
+                        autor: new FormControl(this.productSVC.blog.autor,[Validators.required,Validators.minLength(1)])});    
+    
+        this.productSVC.blog.urlImgs?.forEach(res =>{
+          
+          this.imgRef.push(res as string);
+        });
+    }
+
       this.productSVC.getBlogsCategorys().subscribe(res =>{
         this.categorias = [];
         res.forEach(cate =>{
@@ -62,26 +73,49 @@ export class CreateBlogComponent implements OnInit {
     blog.category ===''){
     this.errores = 'Porfavor rellena todos los campos';
    }else {
-    blog.fecha = this.getDate().toLocaleLowerCase();
+    
+    if(blog.fecha === undefined || blog.fecha === null ){
+
+      blog.fecha = this.getDate().toLocaleLowerCase();
+    }
     blog.urlImgs = [];
     blog.urlImgs.push(...this.imgRef);
     blog.imgPortada = this.imgRef[0];
     blog.title = blog.title?.toLocaleLowerCase();
+    if(blog.id && blog.id !== undefined){
+ 
+      
+      this.productSVC.updateBlog(blog.id,blog).then(res=>{
+        this.datos.reset();
+        this.imgRef = [];
+        this.exito = "Se actualizado exitosamente el Blog";
+        this.errores = "";
+        this.valorImagen = 0;
+        setTimeout(()=>{
+          this.exito="";
+        },5000);
+      }).catch(error =>{
+        this.errores = error;
+      })
+    }else{
     
-    this.productSVC.createBlog(blog).then(res => {
+      
+      this.productSVC.createBlog(blog).then(res => {
     
-      this.datos.reset();
-      this.imgRef = [];
-      this.exito = "Se a creado exitosamente el Blog";
-      this.errores = "";
-      this.valorImagen = 0;
-      setTimeout(()=>{
-        this.exito="";
-      },5000);
-    }).catch(error => {
-      console.log(error);
-      this.errores = error;
-    });
+        this.datos.reset();
+        this.imgRef = [];
+        this.exito = "Se a creado exitosamente el Blog";
+        this.errores = "";
+        this.valorImagen = 0;
+        setTimeout(()=>{
+          this.exito="";
+        },5000);
+      }).catch(error => {
+        console.log(error);
+        this.errores = error;
+      });
+    }
+    
    }
     
   }
