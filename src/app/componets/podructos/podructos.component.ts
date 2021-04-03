@@ -6,6 +6,8 @@ import { CategoryI } from 'src/app/models/categorias';
 import { ProductosService } from 'src/app/services/productos.service';
 import { ProductsI } from '../../models/product-model';
 import { MetasvcService } from '../../services/metasvc.service';
+import { AuthService } from '../../services/auth.service';
+import { map, take } from 'rxjs/operators';
 
 
 export interface Serach{
@@ -44,17 +46,29 @@ export class PodructosComponent implements OnInit {
 
   cate: any;
   
+  isAuth: boolean = false;
+
   constructor(private prodSVC: ProductosService,
     private route: Router,
     private router: ActivatedRoute,
     private title: Title,
-    private seo: MetasvcService) {
+    private seo: MetasvcService,
+    private authSVC: AuthService) {
       this.buscarPor = 'Todo';
       this.title.setTitle('Productos')
      }
 
   ngOnInit(): void {
    
+    this.authSVC.user.pipe(take(1))
+    .pipe(map(authState=> !!authState))
+    .subscribe(res =>{
+      if(res){
+        this.isAuth = true;
+      }else{
+        this.isAuth = false;
+      }
+    });
 
   //  this.getProduct(this.buscarPor);
   this.cate = this.router.snapshot.paramMap.get('cate');
@@ -75,8 +89,7 @@ export class PodructosComponent implements OnInit {
   }
 
   getAllProduct(){
-    this.productos = [];
-    this.temp = [];
+ 
     this.prodSVC.getAllProducts().subscribe(res => {
       this.productos = [];
       this.temp = [];
@@ -91,11 +104,11 @@ export class PodructosComponent implements OnInit {
 
 
   getProduct(ref: any): void{
-    this.productos = [];
-    this.temp = [];
     this.buscarPor = ref;
     this.route.navigate(['/productos',ref]);
     this.prodSVC.productos(ref).subscribe(res=>{
+      this.productos = [];
+      this.temp = [];
       res.forEach(val =>{
         this.productos.push(val as ProductsI);
         this.temp.push(val as ProductsI);
@@ -173,4 +186,27 @@ export class PodructosComponent implements OnInit {
     }
   }
 
+
+  editProduct(prod:ProductsI):void{
+    this.prodSVC.producto = prod;
+    this.route.navigate(['/crear']);
+  }
+
+  deleteProduct(prod: ProductsI):void{
+  
+    
+    
+      this.prodSVC.deleteProduct(prod.id).then((res)=>{
+        prod.url?.forEach(url => {
+          this.prodSVC.deleteImg(url);
+        })
+        if(this.cate !== null){
+          this.getProduct(this.cate);
+        }else{
+          this.getAllProduct();
+        }
+      })
+      .catch(err=>console.log(err));
+    
+  }
 }

@@ -16,13 +16,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class CrearproductoComponent implements OnInit {
 
-  datos= new FormGroup({title: new FormControl('',[Validators.required,Validators.minLength(2)]),
-                        description:new FormControl('',[Validators.required,Validators.minLength(2)]),
-                        marca: new FormControl(''),
-                        category: new FormControl('',Validators.required),
-                        price: new FormControl('',[Validators.required,Validators.minLength(1)]),
-                        cantidad: new FormControl('',[Validators.required,Validators.minLength(1)])
-                        });
+  datos:any;
 
   categorias: CategoryI[] = [];
   valorImagen = 0;
@@ -50,6 +44,21 @@ export class CrearproductoComponent implements OnInit {
 
   ngOnInit(): void {
   
+    this.producto = this.productSVC.producto;
+
+    this.datos= new FormGroup({title: new FormControl(this.producto.title,[Validators.required,Validators.minLength(2)]),
+    description:new FormControl(this.producto.description,[Validators.required,Validators.minLength(2)]),
+    marca: new FormControl(this.producto.marca),
+    id: new FormControl(this.producto.id),
+    category: new FormControl(this.producto.category,Validators.required),
+    price: new FormControl(this.producto.price,[Validators.required,Validators.minLength(1)]),
+    cantidad: new FormControl(this.producto.cantidad,[Validators.required,Validators.minLength(1)])
+    });
+
+    this.producto.url?.forEach(url =>{
+      this.imgRef.push(url as string);
+    })
+
       this.productSVC.getCategorys().subscribe(res =>{
         res.forEach(cate =>{
           this.categorias.push(cate as CategoryI);
@@ -64,25 +73,49 @@ export class CrearproductoComponent implements OnInit {
     producto.category ===''){
     this.errores = 'Porfavor rellena todos los campos';
    }else {
-    producto.url = [];
-    producto.url.push(...this.imgRef);
-    producto.imgPortada = this.imgRef[0];
-    producto.title = producto.title?.toLocaleLowerCase();
-    
-    this.productSVC.createProduct(producto).then(res => {
-    
-      this.datos.reset();
-      this.imgRef = [];
-      this.exito = "Se a creado exitosamente el Producto puedes seguir creando mas productos";
-      this.errores = "";
-      this.valorImagen = 0;
-      setTimeout(()=>{
-        this.exito="";
-      },5000);
-    }).catch(error => {
-      console.log(error);
-      this.errores = error;
-    });
+
+    if(producto.id !== undefined){
+      producto.url = [];
+      producto.url.push(...this.imgRef);
+      producto.imgPortada = this.imgRef[0];
+      this.productSVC.updateProduct(producto.id,producto).then(res =>{
+         
+        this.datos.reset();
+        this.imgRef = [];
+        this.exito = "Se a actualizado correctamente el producto";
+        this.errores = "";
+        this.valorImagen = 0;
+        setTimeout(()=>{
+          this.exito="";
+        },5000);
+      }).catch(error =>{
+        console.log(error);
+        this.errores = error;
+      });
+
+    }else{
+      producto.url = [];
+      producto.url.push(...this.imgRef);
+      producto.imgPortada = this.imgRef[0];
+      producto.title = producto.title?.toLocaleLowerCase();
+      
+      this.productSVC.createProduct(producto).then(res => {
+      
+        this.datos.reset();
+        this.imgRef = [];
+        this.exito = "Se a creado exitosamente el Producto puedes seguir creando mas productos";
+        this.errores = "";
+        this.valorImagen = 0;
+        setTimeout(()=>{
+          this.exito="";
+        },5000);
+      }).catch(error => {
+        console.log(error);
+        this.errores = error;
+      });
+    }
+
+ 
    }
     
   }

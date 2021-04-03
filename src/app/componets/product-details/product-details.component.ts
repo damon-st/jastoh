@@ -114,6 +114,7 @@ export class ProductDetailsComponent implements OnInit {
 
 
       this.producSvc.getImages(cate,id).snapshotChanges().subscribe(res =>{
+        this.urls = [];
         for(let x = 0; x < res.length ; x++){
           let url =  res[x].payload.toJSON();
           this.urls.push(url as any);
