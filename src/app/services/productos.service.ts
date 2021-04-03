@@ -60,7 +60,7 @@ export class ProductosService {
   }
 
    getAllProducts(){
-    return this.db.list('Ropa',query => query.limitToFirst(200)).valueChanges();
+    return this.db.list('Ropa',query => query.limitToFirst(55)).valueChanges();
   }
 
   getAllLimitProducts(limit:any){
