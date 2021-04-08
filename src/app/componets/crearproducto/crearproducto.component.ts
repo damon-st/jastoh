@@ -55,15 +55,19 @@ export class CrearproductoComponent implements OnInit {
     cantidad: new FormControl(this.producto.cantidad,[Validators.required,Validators.minLength(1)])
     });
 
-    this.producto.url?.forEach(url =>{
-      this.imgRef.push(url as string);
-    })
+   
 
       this.productSVC.getCategorys().subscribe(res =>{
         res.forEach(cate =>{
           this.categorias.push(cate as CategoryI);
         });
       },error => console.log(error))
+
+     
+      this.producto.url?.forEach(urls =>{
+        this.imgRef.push(urls as string);
+      })
+     
   }
 
   crear(producto: ProductsI){
@@ -74,7 +78,9 @@ export class CrearproductoComponent implements OnInit {
     this.errores = 'Porfavor rellena todos los campos';
    }else {
 
-    if(producto.id !== undefined){
+    console.log(producto);
+    
+    if(producto.id !== undefined && producto.id !== ''){
       producto.url = [];
       producto.url.push(...this.imgRef);
       producto.imgPortada = this.imgRef[0];

@@ -12,7 +12,15 @@ import { BlogI } from '../models/blog';
 export class ProductosService {
 
   public blog: BlogI = {};
-  public producto: ProductsI = {};
+  public producto: ProductsI = {cantidad:0,
+    category: '',
+    description: '',
+    id: '',
+   imgPortada: '',
+   price: 0,
+  title: '',
+  marca: '',
+  url:[]};
   constructor(private db: AngularFireDatabase,
    private storate: AngularFireStorage) { }
 

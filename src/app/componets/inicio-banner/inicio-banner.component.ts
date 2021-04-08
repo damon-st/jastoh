@@ -21,6 +21,7 @@ export class InicioBannerComponent implements OnInit {
 
   ngOnInit(): void {
     this.productSVC.getAllLimitProducts(8).subscribe(res =>{
+      this.productosLimit = [];
       res.forEach(val =>{
         this.productosLimit.push(val as ProductsI);
       });
