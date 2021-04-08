@@ -80,7 +80,7 @@ export class CrearproductoComponent implements OnInit {
 
     console.log(producto);
     
-    if(producto.id !== undefined && producto.id !== ''){
+    if((producto.id !== undefined && producto.id !== null)&& producto.id !== ''){
       producto.url = [];
       producto.url.push(...this.imgRef);
       producto.imgPortada = this.imgRef[0];
