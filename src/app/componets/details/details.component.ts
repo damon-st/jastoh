@@ -91,6 +91,7 @@ export class DetailsComponent implements OnInit {
     $('#exampleModal').modal('hide');
 
    };
+   window.scrollTo({top: 0,behavior: 'smooth'});
   }
 
    mostrar(img: any){

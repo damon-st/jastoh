@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router';
@@ -8,6 +8,7 @@ import { ProductsI } from '../../models/product-model';
 import { MetasvcService } from '../../services/metasvc.service';
 import { AuthService } from '../../services/auth.service';
 import { map, take } from 'rxjs/operators';
+
 
 
 export interface Serach{
@@ -24,7 +25,7 @@ export interface Filtrador{
   templateUrl: './podructos.component.html',
   styleUrls: ['./podructos.component.css']
 })
-export class PodructosComponent implements OnInit {
+export class PodructosComponent implements OnInit,AfterViewInit {
  
 
   temp:ProductsI[] = [];
@@ -86,6 +87,10 @@ export class PodructosComponent implements OnInit {
    });
 
     
+  }
+
+  ngAfterViewInit():void{
+    window.scrollTo({top: 0,behavior: 'smooth'}); 
   }
 
   getAllProduct(){
