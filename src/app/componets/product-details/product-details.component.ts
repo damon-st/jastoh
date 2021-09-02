@@ -82,6 +82,7 @@ export class ProductDetailsComponent implements OnInit {
   // $('#videoModal').on('hidden.bs.modal', function () {
   //   console.log("Modal closed "+modalClosingMethod);
   // });
+  window.scrollTo({top: 0,behavior: 'smooth'});
 
   window.onpopstate = (e:any) => {
     // console.log("hoplaadads" + e);

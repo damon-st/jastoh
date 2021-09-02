@@ -33,7 +33,7 @@ export class InicioBannerComponent implements OnInit {
   }
 
   showDetails(id: any, cate: any): void{
-    this.route.navigate(['/detalles',cate,id]);
+    this.route.navigate(['productos/detalles',cate,id]);
   }
   
   mostrarImg(url: any){
