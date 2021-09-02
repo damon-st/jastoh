@@ -75,7 +75,9 @@
         <div class="row property__gallery">
             <div class="col-lg-3 col-md-4 col-sm-6 mix women" *ngFor="let product of productosLimit">
                 <div class="product__item">
-                    <div class="product__item__pic set-bg" style="background-image:url('{{product.imgPortada}}')">
+                    <!-- <div class="product__item__pic set-bg" style="background-image:url('{{product.imgPortada}}')"> -->
+                    <div class="product__item__pic set-bg">
+                        <img class="img-fluid"  loading="lazy" [src]="product.imgPortada" [alt]="product.title">
                         <div class="label sale">Nuevo</div>
                         <ul class="product__hover">
                             <li><a class="cursor-pointer" (click)="mostrarImg(product.imgPortada)" data-toggle="modal" data-target="#imgModal" ><i class="fas fa-expand-arrows-alt"></i></a></li>
@@ -121,7 +123,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <img [src]="url" class="img-fluid rounded" appNotImage>
+          <img loading="lazy" [src]="url" class="img-fluid rounded" appNotImage>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn bt-block btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -171,7 +173,7 @@
         <div class="row">
             <div class="col-lg-6 p-0">
                 <div class="discount__pic">
-                    <img class="img-fluid" width="50%" src="assets/img/category-1.jpg" alt="Descuentos Productos">
+                    <img loading="lazy" class="img-fluid" width="50%" src="assets/img/category-1.jpg" alt="Descuentos Productos">
                 </div>
             </div>
             <div class="col-lg-6 p-0">

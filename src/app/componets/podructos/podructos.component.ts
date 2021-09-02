@@ -137,7 +137,7 @@ export class PodructosComponent implements OnInit,AfterViewInit {
   }
 
   productDetail(id: any, cate: any): void{
-    this.route.navigate(['/detalles', cate, id]);
+    this.route.navigate(['productos/detalles', cate, id]);
   }
 
   buscar(form: Serach): void{

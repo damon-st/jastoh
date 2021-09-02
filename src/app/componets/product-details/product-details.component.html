@@ -47,11 +47,11 @@
                             <p class="text-center opcacity-text">
                               REPRODUCIR VIDEO RELACIONADO AL PRODUCTO
                             </p>
-                            <img src="assets/images/video.png" class="rounded cursor-pointer img-fluid img-shadow w-100" alt="{{ prod.title }}"
+                            <img loading="lazy" src="assets/images/video.png" class="rounded cursor-pointer img-fluid img-shadow w-100" alt="{{ prod.title }}"
                               (click)="mostrarVideo(url)" data-toggle="modal" data-target="#videoModal" />
                           </ng-template>
                           <ng-template #imagen>
-                            <img [src]="url" class="rounded cursor-pointer img-fluid w-100" alt="{{ prod.title }}" (click)="mostrar(url)"
+                            <img loading="lazy" [src]="url" class="rounded cursor-pointer img-fluid w-100" alt="{{ prod.title }}" (click)="mostrar(url)"
                               data-toggle="modal" data-target="#exampleModal" appNotImage />
                           </ng-template>
                         </div>
@@ -239,14 +239,14 @@
 
     <div class="row ml-5">
       <div class="col-sm">
-        <img src="assets/images/w.jpg" alt="whatsapp" width="100" class="roudend float-start contact"
+        <img loading="lazy" src="assets/images/w.jpg" alt="whatsapp" width="100" class="roudend float-start contact"
           (click)="contactos('whatsapp')" />
       </div>
-      <div class="col-sm">
+      <div loading="lazy" class="col-sm">
         <img src="assets/images/i.png" alt="Instagram" width="100" class="roudend mx-auto contact"
           (click)="contactos('instagram')" />
       </div>
-      <div class="col-sm">
+      <div loading="lazy" class="col-sm">
         <img src="assets/images/telgram.png" alt="Telegram" width="100" class="roudend float-end contact"
           (click)="contactos('telegram')" />
       </div>
@@ -264,7 +264,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <img [src]="imagem" class="img-fluid rounded img-shadow" width="100%" alt="producto" appNotImage />
+          <img loading="lazy" [src]="imagem" class="img-fluid rounded img-shadow" width="100%" alt="producto" appNotImage />
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">

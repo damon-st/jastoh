@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-
+:root{
+  --color-rojo: '#ca1515';
+}
 
 
 .color-white {
@@ -118,6 +120,10 @@
   margin-top: 6rem;
 }
 
+.mt-20{
+  margin-top: 15vh;
+  margin-bottom: 30px;
+}
 
 
 /* .footer{
@@ -331,6 +337,18 @@
 }
 
 
+.ngx-pagination a, .ngx-pagination button{
+  border: solid var(--blue) 1px;
+  padding: 1.1875rem 1.625rem !important;
+  font-size: 1rem;
+}
+
+.ngx-pagination .current{
+  height: 52px;
+  width: 60px;
+  font-size: 1rem;
+}
+
 @media only screen and (min-width: 1200px) {
 	.container {
 		max-width: 1170px;
@@ -362,6 +380,17 @@
     width: 49.99999%;
     margin: 6px 0;
   }
+
+  /* .ngx-pagination a, .ngx-pagination button{
+    padding: .7rem .7rem !important;
+    font-size: .7rem;
+  }
+
+  .ngx-pagination .current{
+    width: 40px;
+    height:40px ;
+    font-size: .7rem;
+  } */
 }
 
 @media only screen and (max-width: 500px) {

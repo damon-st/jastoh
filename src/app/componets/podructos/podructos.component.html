@@ -7,27 +7,27 @@
           <div class="container mt-5">
             <div class="row">
               <div class="col col-lg-2">
-                <img src="assets/images/grid1.jpg" (click)="getProduct('Bolsos de Mano')" class="rounded-circle img-fluid d-block img-anim-small"  alt="bolsas de mano">
+                <img  loading="lazy" src="assets/images/grid1.jpg" (click)="getProduct('Bolsos de Mano')" class="rounded-circle img-fluid d-block img-anim-small"  alt="bolsas de mano">
                 <h5 class="listado text-center" (click)="getProduct('Bolsos de Mano')">Bolsos de Mano</h5>
               </div>
               <div class="col col-lg-2">
-                <img src="assets/images/grid2.jpg" (click)="getProduct('Zapatos')" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
+                <img loading="lazy" src="assets/images/grid2.jpg" (click)="getProduct('Zapatos')" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
                 <h5 class="listado text-center" (click)="getProduct('Zapatos')">Zapatos</h5>
               </div>
               <div class="col col-lg-2">
-                <img src="assets/images/grid3.jpg"  (click)="getProduct('Relojes')" class="rounded-circle d-block img-fluid img-anim-small"   alt="zapatos">
+                <img loading="lazy" src="assets/images/grid3.jpg"  (click)="getProduct('Relojes')" class="rounded-circle d-block img-fluid img-anim-small"   alt="zapatos">
                 <h5 class="listado text-center" (click)="getProduct('Relojes')">Relojes</h5>
               </div>
               <div class="col col-lg-2">
-                <img src="assets/images/grid4.jpg" (click)="getProduct('Ropa')"  class="rounded-circle img-fluid d-block img-anim-small"   alt="zapatos">
+                <img loading="lazy" src="assets/images/grid4.jpg" (click)="getProduct('Ropa')"  class="rounded-circle img-fluid d-block img-anim-small"   alt="zapatos">
                 <h5 class="listado text-center" (click)="getProduct('Ropa')">Ropa</h5>
               </div>
               <div class="col col-lg-2">
-                <img src="assets/images/grid5.jpg" (click)="getProduct('Accesorios')" class="rounded-circle img-fluid d-block img-anim-small" alt="zapatos">
+                <img loading="lazy" src="assets/images/grid5.jpg" (click)="getProduct('Accesorios')" class="rounded-circle img-fluid d-block img-anim-small" alt="zapatos">
                 <h5 class="listado text-center" (click)="getProduct('Bolsos de Mano')">Accesorios</h5>
               </div>
               <div class="col col-lg-2">
-                <img src="assets/images/grid6.jpg" (click)="getProduct('Perfumes')" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
+                <img loading="lazy" src="assets/images/grid6.jpg" (click)="getProduct('Perfumes')" class="rounded-circle img-fluid d-block img-anim-small"  alt="zapatos">
                 <h5 class="listado text-center" (click)="getProduct('Perfumes')">Perfumes</h5>
               </div>
             </div>
@@ -140,7 +140,7 @@
               <aside class="col-md-3">
                   <a  class="img-wrap">
                       <span class="badge badge-danger"> Nuevo </span>
-                      <img class="cursor-pointer"  src="{{prod.imgPortada}}" alt="{{prod.title}}" (click)="productDetail(prod.id,prod.category)" appNotImage>
+                      <img class="cursor-pointer" loading="lazy"  src="{{prod.imgPortada}}" alt="{{prod.title}}" (click)="productDetail(prod.id,prod.category)" appNotImage>
                   </a>
               </aside> <!-- col.// -->
               <div class="col-md-6">

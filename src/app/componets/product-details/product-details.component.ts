@@ -166,7 +166,7 @@ export class ProductDetailsComponent implements OnInit {
 
 
   relacionadosProductos(cate: any, id:any){
-    this.router.navigate(['/detalles',cate,id]);
+    this.router.navigate(['productos/detalles',cate,id]);
   }
 
   isVideoOImage(valor: any) : string{
