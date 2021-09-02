@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, take } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,11 +10,12 @@ declare var $ : any;
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, AfterViewInit {
 
   isAuth:boolean = false;
   constructor(private auth: AuthService,
     private router: Router) { }
+ 
 
   ngOnInit(): void {
     this.auth.user.pipe(take(1))
@@ -38,9 +39,18 @@ export class NavbarComponent implements OnInit {
         $(".offcanvas-menu-overlay").removeClass("active");
     });
 
-    $("#preloder").delay(200).fadeOut("slow");
+    $("#preloder").delay(50).fadeOut("slow");
   }
 
+  ngAfterViewInit(): void {
+    document.querySelectorAll('.out').forEach( e=>{
+        e.addEventListener('click',function(){
+          $(".offcanvas-menu-wrapper").removeClass("active");
+          $(".offcanvas-menu-overlay").removeClass("active");
+        });
+    });
+  }
+  
 
 
 }
