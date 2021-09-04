@@ -1,5 +1,6 @@
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { map, take } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
@@ -26,7 +27,10 @@ export class BlogComponent implements OnInit {
 
   constructor(private router: Router,
     private productSVC: ProductosService,
-    private authSVC: AuthService) { }
+    private authSVC: AuthService,
+    private title: Title) {
+      this.title.setTitle('Blog');
+     }
 
   ngOnInit(): void {
 

@@ -18,7 +18,7 @@ export class IndexComponent implements OnInit {
   constructor(
     private title: Title,
     private seo: MetasvcService) {
-      this.title.setTitle('Jastoh')
+      this.title.setTitle('Jastho')
      }
 
   ngOnInit(): void {
