@@ -148,7 +148,7 @@ export class ProductDetailsComponent implements OnInit {
 
    myUrl:any;
    contactos(url: string){
-     this.myUrl = 'https://variedadesjastho.web.app' +this.router.url;
+     this.myUrl = 'https://variedadesjastho.com' +this.router.url;
     switch(url){
       case 'whatsapp':
         console.log(this.myUrl);

@@ -25,7 +25,7 @@
             <div class="col-lg-8 col-md-8">
                 <div class="blog__details__content">
                     <div class="blog__details__item">
-                        <img class="cursor-pointer" [src]="blogs.imgPortada" alt="{{blogs.title}}" (click)="updateUrlImgShow(blogs.imgPortada)" data-toggle="modal" data-target="#imgModal">
+                        <img loading="lazy" class="cursor-pointer" [src]="blogs.imgPortada" alt="{{blogs.title}}" (click)="updateUrlImgShow(blogs.imgPortada)" data-toggle="modal" data-target="#imgModal" appNotImage>
                         <div class="blog__details__item__title">
                             <span class="tip">{{blogs.category}}</span>
                             <h4>{{blogs.title | uppercase}}</h4>
@@ -130,7 +130,7 @@
                         </div>
                         <a  class="blog__feature__item" *ngFor="let rel of blogsRelacionados">
                             <div class="blog__feature__item__pic">
-                                <img width="110px" height="73px" [src]="rel.imgPortada" alt="{{rel.title}}">
+                                <img loading="lazy" width="110px" height="73px" [src]="rel.imgPortada" alt="{{rel.title}}" appNotImage>
                             </div>
                             <div class="blog__feature__item__text cursor-pointer" (click)="showProductRela(rel.id)">
                                 <h6>{{rel.title}}</h6>
@@ -160,7 +160,7 @@
 
   <!-- Modal -->
   <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Imagen</h5>
@@ -169,7 +169,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <img [src]="urlsImg" class="img-fluid" >
+            <img loading="lazy" [src]="urlsImg" class="img-fluid rounded img-shadow" width="100%" alt="producto" appNotImage />
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>        </div>

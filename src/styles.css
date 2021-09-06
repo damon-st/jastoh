@@ -332,6 +332,11 @@
   color: #ca1515;
 }
 
+.btn-red{
+  background-color: #ca1515;
+  color: white;
+}
+
 .mt-11{
   margin-top: 7rem;
 }

@@ -15,6 +15,7 @@ export class InicioBannerComponent implements OnInit {
   url:any;
 
   year: any;
+  producto: ProductsI = {};
 
   constructor(private productSVC: ProductosService,
     private route: Router) { }
@@ -36,8 +37,8 @@ export class InicioBannerComponent implements OnInit {
     this.route.navigate(['productos/detalles',cate,id]);
   }
   
-  mostrarImg(url: any){
-    this.url = url;
+  mostrarImg(product: ProductsI){
+    this.producto = product;
   }
 
   mostrarCuenta(): void{
@@ -64,7 +65,7 @@ export class InicioBannerComponent implements OnInit {
     // Uncomment below and use your date //
 
     /* var timerdate = "2020/12/30" */
-    var time = new Date(2021,3,30);
+    var time = new Date(2021,11,30);
     // var time = new Date(2021,2,29,12,16,0);
 
     
@@ -92,4 +93,24 @@ export class InicioBannerComponent implements OnInit {
 
     
   }
+
+  
+  myUrl:any;
+
+  contactos(prodcuto: ProductsI,url: any){
+    this.myUrl = 'https://variedadesjastho.com/productos/detalles/' +this.producto.category+"/" + prodcuto.id;
+   switch(url){
+     case 'whatsapp':
+       
+       window.open(`https://api.whatsapp.com/send?phone=593984334637&text=Me%20interesa%20este%20producto%20${this.myUrl}`,'_blanck');
+       break;
+     case 'instagram':
+       window.open('https://www.instagram.com/variedadesjastoh/?igshid=v5r52ujztizn','_blanck');
+       break;  
+
+     case 'telegram':
+       window.open('https://t.me/JasminCevallos','_black');
+       break;  
+   }
+ }
 }
