@@ -68,158 +68,170 @@
 
 
         <!-- ========================= SECTION CONTENT ========================= -->
-    <section class="section-content padding-y">
-      <div class="container">
-      
-      <div class="row">
-          <aside class="col-md-3">
-              
+      <!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+      <section class="shop spad">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-3">
+              <div class="shop__sidebar">
+                <div class="sidebar__categories">
+                             
       <div class="card">
-          <article class="filter-group">
-              <header class="card-header">
-                  <a class="cursor-pointer decoration-none"  data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" >
-                      <i class="icon-control fa fa-chevron-down"></i>
-                      <h6 >Buscar por: <span class="title">{{buscarPor}}</span></h6>
-                  </a>
-              </header>
-              <div class="filter-content collapse show" id="collapse_1" style="">
-                  <div class="card-body">
-                      
-              
-                      <ul class="list-menu">
-                      <div *ngFor="let cate of categorys">
-                        <li class="list-group-item cursor-pointer hover-black" (click)="getProduct(cate.id)">{{cate.id}}</li>
-                       </div>  
-                      </ul>
-      
-                  </div> <!-- card-body.// -->
-              </div>
-          </article> <!-- filter-group  .// -->
-
-
-          <article class="filter-group">
+        <article class="filter-group">
             <header class="card-header">
-                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                <a class="cursor-pointer decoration-none"  data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" >
                     <i class="icon-control fa fa-chevron-down"></i>
-                    <h6 class="title">Filtrar por Precio</h6>
+                    <h6 >Buscar por: <span class="title">{{buscarPor}}</span></h6>
                 </a>
             </header>
-            <form [formGroup]="filtro" (ngSubmit)="filtrarPrecio(filtro.value)">
-              <div class="filter-content collapse show" id="collapse_3" >
-                <div class="card-body">                   
-                    <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label>Minimo</label>
-                      <input class="form-control" min="1"  placeholder="$1" type="number" name="minimo" formControlName="minimo">
-                    </div>
-                    <div class="form-group text-right col-md-6">
-                      <label>Maximo</label>
-                      <input class="form-control" min="1" placeholder="$200" type="number" name="maximo" formControlName="maximo">
-                    </div>
-                    </div> <!-- form-row.// -->
-                    <button type="submit" class="btn btn-block btn-primary" [disabled]="filtro.invalid">Filtrar</button>
-                </div><!-- card-body.// -->
-            </div>
-            </form>
-        </article> <!-- filter-group .// -->
-
-         
-      </div> <!-- card.// -->
-      
-          </aside> <!-- col.// -->
-          <main class="col-md-9">
-      
-      
-      
+            <div class="filter-content collapse show" id="collapse_1" style="">
+                <div class="card-body">
+                    
             
-      <div  *ngIf="productos.length>0">
+                    <ul class="list-menu">
+                    <div *ngFor="let cate of categorys">
+                      <li class="list-group-item cursor-pointer hover-black" (click)="getProduct(cate.id)">{{cate.id}}</li>
+                     </div>  
+                    </ul>
+    
+                </div> <!-- card-body.// -->
+            </div>
+        </article> <!-- filter-group  .// -->
 
-     
-      <article class="card card-product-list" *ngFor="let prod of productos | paginate:{itemsPerPage: 9, currentPage: pageActual, totalItems: totalItems }" >
-          <div class="row no-gutters" >
-              <aside class="col-md-3">
-                  <a  class="img-wrap">
-                      <span class="badge badge-danger"> Nuevo </span>
-                      <img class="cursor-pointer" loading="lazy"  src="{{prod.imgPortada}}" alt="{{prod.title}}" (click)="productDetail(prod.id,prod.category)" appNotImage>
-                  </a>
-              </aside> <!-- col.// -->
-              <div class="col-md-6">
-                  <div class="info-main">
-                      <a (click)="productDetail(prod.id,prod.category)" class="h5 title cursor-pointer"> {{prod.title | uppercase}}</a>
-                      <div class="rating-wrap mb-3">
-                          <ul class="rating-stars">
-                              <li style="width:100%" class="stars-active"> 
-                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                  <i class="fa fa-star"></i> 
-                              </li>
-                              <li>
-                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                  <i class="fa fa-star"></i> 
-                              </li>
-                          </ul>
-                          <!-- <div class="label-rating">7/10</div> -->
-                      </div> <!-- rating-wrap.// -->
-                      
-                      <p> {{prod.description}}</p>
-                  </div> <!-- info-main.// -->
-              </div> <!-- col.// -->
-              <aside class="col-sm-3">
-                  <div class="info-aside">
-                      <div class="price-wrap">
-                          <span class="price h5"><i class="fas fa-dollar-sign"></i> {{prod.price}}</span>	
-                          <!-- <del class="price-old"> $198</del> -->
-                      </div> <!-- info-price-detail // -->
-                      <p class="text-success cursor-pointer" (click)="getProduct(prod.category)">Categoria: {{prod.category}}</p>
-                      <br>
-                      <p>
-                          <a  class="btn btn-red btn-block btn-hover" (click)="productDetail(prod.id,prod.category)"> Detalles  <i class="fas fa-list-ul"></i> </a>
-                          <!-- <a  class="btn btn-light btn-block"><i class="fa fa-heart"></i> 
-                              <span class="text">Add to wishlist</span>
-                          </a> -->
-                            <a *ngIf="isAuth">
-                                    <button type="button" name="edit" id="edit" class="btn btn-warning mr-2 color-white" (click)="editProduct(prod)"><i class="fas fa-pen"></i></button>
-                                    <button type="button" name="delete" id="delete" class="btn btn-danger" (click)="deleteProduct(prod)"><i class="fas fa-trash-alt"></i></button>
-                            </a>
-                      </p>
-                  </div> <!-- info-aside.// -->
-              </aside> <!-- col.// -->
-          </div> <!-- row.// -->
-      </article> <!-- card-product .// -->
-      
-    </div>
 
-      <div class="col-lg mt-5" *ngIf="loading">
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" style="width: 10rem; height: 10rem;" role="status">
-            <span class="visually-hidden">Loading...</span>
+        <article class="filter-group">
+          <header class="card-header">
+              <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                  <i class="icon-control fa fa-chevron-down"></i>
+                  <h6 class="title">Filtrar por Precio</h6>
+              </a>
+          </header>
+          <form [formGroup]="filtro" (ngSubmit)="filtrarPrecio(filtro.value)">
+            <div class="filter-content collapse show" id="collapse_3" >
+              <div class="card-body">                   
+                  <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Minimo</label>
+                    <input class="form-control" min="1"  placeholder="$1" type="number" name="minimo" formControlName="minimo">
+                  </div>
+                  <div class="form-group text-right col-md-6">
+                    <label>Maximo</label>
+                    <input class="form-control" min="1" placeholder="$200" type="number" name="maximo" formControlName="maximo">
+                  </div>
+                  </div> <!-- form-row.// -->
+                  <button type="submit" class="btn btn-block btn-primary" [disabled]="filtro.invalid">Filtrar</button>
+              </div><!-- card-body.// -->
           </div>
-      </div>
-      </div>
-      <div class="col-lg mt-5" *ngIf="productos.length<1">
-        <div class="alert alert-warning" role="alert">
-           <p class="h5">Por el momento no ay productos que monstrar lo sentimos :(</p>
-        </div>
-      </div>
-      
-      
-      
-      <nav aria-label="Page navigation sample">
-        <ul class="pagination">
-          <pagination-controls class="my-pagination" (pageChange)="pageActual = $event"
-           previousLabel="Anterior"
-            nextLabel="Siguiente"
-            ></pagination-controls>
+          </form>
+      </article> <!-- filter-group .// -->
 
-        </ul>
-      </nav>
-      
-          </main> <!-- col.// -->
-      
-      </div>
-      
-      </div> <!-- container .//  -->
+       
+    </div> <!-- card.// -->
+                </div>
+               
+               
+               
+              </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+              <div class="row">
+                <div *ngFor="let prod of productos | paginate:{itemsPerPage: 9, currentPage: pageActual, totalItems: totalItems }" class="col-lg-4 col-md-6">
+                  <div  class="product__item">
+                    <div
+                      class="product__item__pic set-bg"
+                      style="background-image: url('{{prod.imgPortada}}')"
+                    >
+                      <div class="label new">Nuevo</div>
+                      <ul class="product__hover">
+                        <li><a class="cursor-pointer" (click)="mostrarImg(prod)"   data-toggle="modal" data-target="#imgModal" ><i class="fas fa-expand-arrows-alt"></i></a></li>
+                        <li><a class="cursor-pointer" (click)="productDetail(prod.id,prod.category)" ><i class="fas fa-shopping-bag"></i></a></li>
+                      </ul>
+                    </div>
+                    <div class="product__item__text">
+                      <h6 class="cursor-pointer title"><a (click)="productDetail(prod.id,prod.category)" >{{prod.title | uppercase}}</a></h6>
+                      <p class="text-success cursor-pointer" (click)="getProduct(prod.category)">Categoria: {{prod.category}}</p>
+                      <div class="rating-wrap mb-3">
+                        <ul class="rating-stars">
+                            <li style="width:100%" class="stars-active"> 
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> 
+                            </li>
+                            <li>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> 
+                            </li>
+                        </ul>
+                        <!-- <div class="label-rating">7/10</div> -->
+                    </div> <!-- rating-wrap.// -->
+                      <div class="product__price">$ {{prod.price}}</div>
+                    </div>
+                    <a *ngIf="isAuth">
+                      <button type="button" name="edit" id="edit" class="btn btn-warning mr-2 color-white" (click)="editProduct(prod)"><i class="fas fa-pen"></i></button>
+                      <button type="button" name="delete" id="delete" class="btn btn-danger" (click)="deleteProduct(prod)"><i class="fas fa-trash-alt"></i></button>
+                   </a>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 text-center center">
+          <nav aria-label="Page navigation sample">
+            <ul class="" >
+              <pagination-controls class="my-pagination" (pageChange)="pageActual = $event"
+               previousLabel="Anterior"
+                nextLabel="Siguiente"
+                ></pagination-controls>
+    
+            </ul>
+          </nav>
+          </div>
+        
       </section>
-      <!-- ========================= SECTION CONTENT END// ========================= -->
-      
+       
+
+
+  <!-- Modal Imagen -->
+  <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Descripcion del Producto</h5> -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="wrapper">
+                <div class="product-img">
+                  <img [src]="producto.imgPortada" height="420" width="327" appNotImage>
+                </div>
+                <div class="product-info">
+                  <div class="product-text">
+                    <h1>{{producto.title | uppercase}}</h1>
+                    <h2>{{producto.category}}</h2>
+                    <p>{{producto.description}} </p>
+                  </div>
+                  <div class="product-price-btn">
+                    <p><span>{{producto.price}}</span>$</p>
+                    <button type="button" (click)="contactos(producto,'whatsapp')">Adquirir</button>
+                  </div>
+                 
+                </div>
+
+                <div class="modal-footer close-movil">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>

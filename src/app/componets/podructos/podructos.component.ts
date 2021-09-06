@@ -31,6 +31,7 @@ export class PodructosComponent implements OnInit,AfterViewInit {
   temp:ProductsI[] = [];
   productos: ProductsI[] = [];
   categorys: CategoryI[] = [];
+  producto:ProductsI = {};
 
   search = new FormGroup({buscar: new FormControl('',[Validators.required,Validators.minLength(2),Validators.maxLength(30)
   ])});
@@ -213,5 +214,27 @@ export class PodructosComponent implements OnInit,AfterViewInit {
       })
       .catch(err=>console.log(err));
     
+  }
+
+  mostrarImg(product: ProductsI){
+    this.producto = product;
+  }
+
+  myUrl:any;
+  contactos(prodcuto: ProductsI,url: any){
+    this.myUrl = 'https://variedadesjastho.com/productos/detalles/' +this.producto.category+"/" + prodcuto.id;
+   switch(url){
+     case 'whatsapp':
+       
+       window.open(`https://api.whatsapp.com/send?phone=593984334637&text=Me%20interesa%20este%20producto%20${this.myUrl}`,'_blanck');
+       break;
+     case 'instagram':
+       window.open('https://www.instagram.com/variedadesjastoh/?igshid=v5r52ujztizn','_blanck');
+       break;  
+
+     case 'telegram':
+       window.open('https://t.me/JasminCevallos','_black');
+       break;  
+   }
   }
 }
